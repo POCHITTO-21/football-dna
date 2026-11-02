@@ -10,7 +10,7 @@ export function AxisRadar({ scores, compare, compareLabel }: { scores: AxisScore
     <figure>
       <div className="h-72 w-full" aria-hidden>
         <ResponsiveContainer width="100%" height="100%">
-          <RadarChart data={data} outerRadius="72%">
+          <RadarChart data={data} outerRadius="72%" accessibilityLayer={false}>
             <PolarGrid stroke="#2a3f78" />
             <PolarAngleAxis dataKey="axis" tick={{ fill: "#eef3ff", fontSize: 12, fontWeight: 700 }} />
             <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />

@@ -5,7 +5,7 @@
 > 診断は自己理解と対話のためのもので、運動能力の測定や選手選抜の判断に使うものではありません。
 
 - 実装計画・採点アルゴリズム・DB設計・進捗: [docs/PLAN.md](docs/PLAN.md)
-- 現在の状態: **Phase 1（ゲスト診断）・Phase 2（ログイン・履歴・共有リンク）完了、Phase 3（チーム・招待・保護者同意）実装済み**。Phase 4（PWA・英語化・公開手順）は未実装です。
+- 現在の状態: **Phase 1〜3 完了、Phase 4（PWA・多言語化の準備・アクセシビリティ・E2E・公開手順）実装済み**。英語版の公開、管理者用の設問管理画面は未実装です。
 - Supabase を設定しない場合はゲスト診断だけが動き、ログイン関連のメニューは表示されません。
 
 ## 必要なもの
@@ -97,13 +97,25 @@ npm run test:db
 
 ## デプロイ（Vercel）
 
-1. このリポジトリを GitHub に push する
-2. https://vercel.com で「Add New → Project」からリポジトリを選ぶ（Framework: Next.js は自動検出）
-3. ゲスト診断だけなら環境変数の設定不要。そのまま「Deploy」
-4. ログイン機能を使う場合は「Settings → Environment Variables」に上表の3つを登録し（`NEXT_PUBLIC_SITE_URL` は本番URL）、再デプロイ
-5. Supabase の Authentication → URL Configuration に本番URLと `/auth/callback` を追加
+1. https://vercel.com に GitHub アカウントでログイン（Hobby プランは無料）
+2. 「Add New… → Project」→ `football-dna` リポジトリの「Import」
+3. 「Environment Variables」に次の3つを入れる（ゲスト診断だけなら不要）
+   - `NEXT_PUBLIC_SUPABASE_URL`、`NEXT_PUBLIC_SUPABASE_ANON_KEY`：`.env.local` と同じ値
+   - `NEXT_PUBLIC_SITE_URL`：いったん空のままでOK（公開URLが決まったら設定して再デプロイ）
+4. 「Deploy」。数分で `https://（プロジェクト名）.vercel.app` が発行される
+5. Vercel の Settings → Environment Variables で `NEXT_PUBLIC_SITE_URL` を発行されたURL（末尾スラッシュなし）にして、Deployments から「Redeploy」
+6. Supabase の Authentication → URL Configuration で Site URL を本番URLにし、Redirect URLs に `https://（本番URL）/auth/callback` を追加
+7. 以後は GitHub の main にマージするたびに自動で公開される
 
-詳細な公開前チェック（プライバシーポリシー、保護者同意、権限・漏洩テストなど）は Phase 4 で手順化します。
+一般公開の前に [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md)（プライバシーポリシー、メール送信設定、スマホでの確認、権限テストなど）を確認してください。
+
+## スマホのホーム画面に追加（PWA）
+
+本番（HTTPS）では、スマホのブラウザから「ホーム画面に追加」するとアプリのように使えます。トップ・診断ページはオフラインでも開け、診断の途中の回答は端末に保存されます。ログインが必要なページはオフラインでは開けません。開発中（`npm run dev`）は Service Worker を登録しません。
+
+## 多言語化（準備のみ）
+
+画面共通の文言は `src/i18n/messages/ja.ts` にあり、英語版 `en.ts` は同じキーを持つことを型とテストで確認しています。英語を公開するときは、ロケールの決め方（URL の `/en` など）を `src/i18n/config.ts` で決め、設問・タイプ説明（`src/data/*.json`）の英語版を追加します。現在は日本語のみ公開しています。
 
 ## 主なディレクトリ
 
@@ -117,7 +129,9 @@ npm run test:db
 | `supabase/` | マイグレーション、seed、RLSテスト |
 | `src/app/` | 画面（App Router） |
 | `src/components/` | UI コンポーネント |
-| `e2e/` | Playwright テスト |
+| `e2e/` | Playwright テスト（診断・アクセシビリティ・PWA） |
+| `src/i18n/` | 画面共通の文言（日本語・英語の準備） |
+| `public/sw.js`, `src/app/manifest.ts` | PWA（Service Worker・マニフェスト） |
 
 ## データの扱い
 
