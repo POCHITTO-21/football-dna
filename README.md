@@ -5,7 +5,7 @@
 > 診断は自己理解と対話のためのもので、運動能力の測定や選手選抜の判断に使うものではありません。
 
 - 実装計画・採点アルゴリズム・DB設計・進捗: [docs/PLAN.md](docs/PLAN.md)
-- 現在の状態: **Phase 1（ゲスト診断）完了、Phase 2（ログイン・履歴・共有リンク）実装済み**。チーム管理（Phase 3）以降は未実装です。
+- 現在の状態: **Phase 1（ゲスト診断）・Phase 2（ログイン・履歴・共有リンク）完了、Phase 3（チーム・招待・保護者同意）実装済み**。Phase 4（PWA・英語化・公開手順）は未実装です。
 - Supabase を設定しない場合はゲスト診断だけが動き、ログイン関連のメニューは表示されません。
 
 ## 必要なもの
@@ -70,12 +70,14 @@ notepad .env.local
 
 service role key は使いません（設定しないでください）。秘密の値をコードやリポジトリに書かないでください。
 
-## Supabase の準備（Phase 2）
+## Supabase の準備（Phase 2・3）
 
 1. https://supabase.com で無料アカウントを作り、「New project」でプロジェクトを作成（Region は Tokyo 推奨）。
 2. 左メニュー **SQL Editor** で、次の2つのファイルの中身を順に貼り付けて「Run」。
    - `supabase/migrations/20261102000001_phase2_core.sql`（テーブル・RLS・関数）
    - `supabase/seed.sql`（設問40問）
+   - `supabase/migrations/20261102000002_phase3_teams.sql`（チーム・招待・保護者同意・監査ログ）
+   - すでに Phase 2 まで実行済みの場合は、3つ目だけを実行します。
 3. **Authentication → URL Configuration**
    - Site URL: `http://localhost:3000`（公開後は本番URL）
    - Redirect URLs に `http://localhost:3000/auth/callback` を追加（公開後は本番URLの `/auth/callback` も）
@@ -86,7 +88,7 @@ service role key は使いません（設定しないでください）。秘密
 
 ### DB のテスト（任意）
 
-PostgreSQL 16 があれば、マイグレーションと RLS（他人の結果を読めない、未成年は保護者確認なしで公開共有できない等）をローカルで検証できます。
+PostgreSQL 16 があれば、マイグレーションと RLS（他人の結果を読めない、未成年は保護者確認なしで公開共有できない、指導者は同意済みの選手の結果だけ見られる、招待の期限切れ・取り消し等）をローカルで検証できます。
 
 ```powershell
 $env:DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/postgres"
@@ -111,6 +113,7 @@ npm run test:db
 | `src/lib/scoring/` | 採点の純粋関数とテスト |
 | `src/lib/storage.ts` | ゲスト用のローカル保存（localStorage） |
 | `src/app/actions/account.ts` | ログイン・保存・履歴・共有リンク・削除のサーバー処理 |
+| `src/app/actions/teams.ts`, `src/lib/teams/` | チーム・招待・同意・保護者・集計・CSV |
 | `supabase/` | マイグレーション、seed、RLSテスト |
 | `src/app/` | 画面（App Router） |
 | `src/components/` | UI コンポーネント |
@@ -121,5 +124,7 @@ npm run test:db
 - 氏名・生年月日・学校・住所・顔写真は収集しません。
 - ゲストの回答と結果はブラウザの localStorage にだけ保存し、サーバーには送信しません。
 - ログイン後、本人が「アカウントに保存」を押した結果だけをサーバーに保存します（他人からは RLS で読めません）。
-- 共有リンクは作成時は非公開。本人が公開した場合のみ、タイプ名・8軸・ポジション候補（と選んだ場合のニックネーム）が見えます。高校生以下は保護者確認が済むまで公開できません。
+- 共有リンクは作成時は非公開。本人が公開した場合のみ、タイプ名・8軸・ポジション候補（と選んだ場合のニックネーム）が見えます。18歳未満（年代未設定・「回答しない」を含む）は保護者確認が済むまで公開できません。
+- チームの指導者に見えるのは、選手本人が「指導者に結果を見せる」を選び、18歳未満は保護者も同意した選手の結果（タイプ・8軸・ポジション候補）だけです。回答内容やプロフィールは見えません。
+- チームの集計は共有している選手が5人以上のときだけ表示し、CSV出力・個人結果の閲覧は監査ログに残します。
 - `/about` からこの端末のデータをすべて削除できます。
