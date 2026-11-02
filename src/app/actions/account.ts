@@ -325,6 +325,23 @@ export async function requestLoginLink(input: unknown): Promise<ActionResult> {
     email: parsed.data.email,
     options: { emailRedirectTo: `${getSiteUrl()}/auth/callback?next=${encodeURIComponent(next)}` },
   });
-  if (error) return fail("メールを送信できませんでした。時間をおいてお試しください。");
+  if (error) {
+    // サーバーのログ（npm run dev の画面）に原因を出す。メールアドレスは記録しない。
+    console.error("[login] signInWithOtp failed:", error.status, error.code, error.message);
+    return fail(loginErrorMessage(error));
+  }
   return { ok: true, data: undefined };
+}
+
+function loginErrorMessage(error: { status?: number; code?: string; message: string }): string {
+  const msg = error.message.toLowerCase();
+  if (error.status === 429 || error.code === "over_email_send_rate_limit" || msg.includes("rate limit")) {
+    return "メールの送信回数の上限に達しました。1時間ほどおいてからお試しください。";
+  }
+  if (msg.includes("invalid api key") || msg.includes("no api key") || error.status === 401) {
+    return "サーバーの設定（Supabase のキー）に誤りがあるため、メールを送信できませんでした。";
+  }
+  const base = "メールを送信できませんでした。時間をおいてお試しください。";
+  // 開発中だけ原因を画面に表示する
+  return process.env.NODE_ENV === "development" ? `${base}（詳細: ${error.message}）` : base;
 }

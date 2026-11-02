@@ -12,10 +12,11 @@ export function getSupabaseEnv(): SupabaseEnv | null {
   try {
     const u = new URL(url);
     if (u.protocol !== "https:" && u.hostname !== "localhost" && u.hostname !== "127.0.0.1") return null;
+    // ダッシュボードから「…supabase.co/rest/v1/」のようにパス付きで貼られても動くよう、オリジンだけを使う
+    return { url: u.origin, anonKey };
   } catch {
     return null;
   }
-  return { url, anonKey };
 }
 
 export function isSupabaseConfigured(): boolean {
