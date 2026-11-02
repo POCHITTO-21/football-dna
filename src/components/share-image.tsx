@@ -1,18 +1,29 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ShareLinkPanel } from "@/components/share-link-panel";
+import { useResultEntry } from "@/components/use-result-entry";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { SHARE_SIZES, buildShareCardData, drawShareCard, type ShareSize } from "@/lib/share-card";
-import { getResult, type StoredResult } from "@/lib/storage";
 
-export function ShareImage({ id }: { id: string }) {
-  const [entry, setEntry] = useState<StoredResult | null | undefined>(undefined);
+export function ShareImage({ id, accountEnabled }: { id: string; accountEnabled: boolean }) {
+  const loaded = useResultEntry(id, accountEnabled);
+  const entry = loaded === undefined ? undefined : (loaded?.entry ?? null);
+  const [canShareFile, setCanShareFile] = useState(false);
+  const [shareError, setShareError] = useState<string | null>(null);
   const [size, setSize] = useState<ShareSize>("story");
   const [includeNickname, setIncludeNickname] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => setEntry(getResult(id)), [id]);
+  useEffect(() => {
+    try {
+      const probe = new File([new Blob()], "x.png", { type: "image/png" });
+      setCanShareFile(typeof navigator.share === "function" && !!navigator.canShare?.({ files: [probe] }));
+    } catch {
+      setCanShareFile(false);
+    }
+  }, []);
 
   const data = useMemo(
     () =>
@@ -57,6 +68,21 @@ export function ShareImage({ id }: { id: string }) {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, "image/png");
+  };
+
+  const shareImage = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.toBlob(async (blob) => {
+      if (!blob) return;
+      const file = new File([blob], "football-dna.png", { type: "image/png" });
+      try {
+        setShareError(null);
+        await navigator.share({ files: [file], text: "わたしのプレースタイルは「" + (data?.typeName ?? "") + "」 #FOOTBALLDNA" });
+      } catch (e) {
+        if ((e as Error)?.name !== "AbortError") setShareError("共有できませんでした。画像をダウンロードしてから投稿してください。");
+      }
     }, "image/png");
   };
 
@@ -116,13 +142,31 @@ export function ShareImage({ id }: { id: string }) {
         />
       </div>
 
-      <Button size="lg" block onClick={download}>
+      {canShareFile && (
+        <Button size="lg" block onClick={shareImage}>
+          画像を共有する
+        </Button>
+      )}
+      <Button size="lg" block variant={canShareFile ? "secondary" : "primary"} onClick={download}>
         画像をダウンロード
       </Button>
+      {shareError && (
+        <p role="alert" className="text-sm text-danger">
+          {shareError}
+        </p>
+      )}
       <p className="text-xs leading-relaxed text-ink-muted">
-        ダウンロードした画像は、ご自身でSNSに投稿できます。未成年の方は、投稿する前におうちの人に確認してください。
-        共有リンクの発行やスマホの共有ボタン連携は今後のアップデートで対応予定です。
+        画像はご自身でSNSに投稿できます。未成年の方は、投稿する前におうちの人に確認してください。
       </p>
+
+      {accountEnabled &&
+        (loaded?.source === "account" ? (
+          <ShareLinkPanel resultId={entry.id} hasNickname={hasNickname} />
+        ) : (
+          <p className="rounded-xl border border-navy-700 p-3 text-xs text-ink-muted">
+            URLで結果を共有する「共有リンク」は、結果をアカウントに保存すると使えます（結果画面の「アカウントに保存」から）。
+          </p>
+        ))}
       <LinkButton href={`/results/${entry.id}`} variant="secondary" block>
         結果にもどる
       </LinkButton>

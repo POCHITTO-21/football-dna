@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { getSiteUrl, isSupabaseConfigured } from "@/lib/supabase/config";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: { default: "FOOTBALL DNA｜サッカー プレースタイル診断", template: "%s｜FOOTBALL DNA" },
   description:
     "40問の質問から、あなたのプレースタイル（16タイプ）、8つのプレー志向、ポジションの可能性がわかるサッカー診断。自己理解と対話のためのツールです。",
@@ -30,9 +32,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span aria-hidden className="inline-block size-3 rotate-45 rounded-sm bg-accent" />
               FOOTBALL <span className="text-accent">DNA</span>
             </Link>
-            <Link href="/about" className="flex min-h-11 items-center px-2 text-sm text-ink-muted hover:text-ink">
-              この診断について
-            </Link>
+            <nav className="flex items-center">
+              <Link href="/about" className="flex min-h-11 items-center px-2 text-sm text-ink-muted hover:text-ink">
+                この診断について
+              </Link>
+              {isSupabaseConfigured() && (
+                <Link href="/me" className="flex min-h-11 items-center px-2 text-sm font-bold text-accent hover:text-accent-strong">
+                  マイページ
+                </Link>
+              )}
+            </nav>
           </div>
         </header>
         <main id="main" className="mx-auto w-full max-w-xl px-4 pb-16 pt-6">
