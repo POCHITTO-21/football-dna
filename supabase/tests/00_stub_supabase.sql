@@ -13,5 +13,8 @@ $$;
 grant usage on schema auth to anon, authenticated, service_role;
 grant execute on function auth.uid() to anon, authenticated, service_role;
 grant usage on schema public to anon, authenticated, service_role;
--- Supabase と同じく、テーブル権限は広く与え RLS で制御する
-alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
+-- Supabase と同じく pgcrypto を extensions スキーマに置く。
+-- テーブルの既定権限は付与しない（「自動公開」オフ相当）。マイグレーションの明示的な GRANT だけで動くことを確認する。
+create schema if not exists extensions;
+create extension if not exists pgcrypto with schema extensions;
+grant usage on schema extensions to anon, authenticated, service_role;

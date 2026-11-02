@@ -77,13 +77,17 @@ end $$;
 -- a が共有リンクを作成（初期は無効）→ 公開取得できない → 有効化 → 取得できる → 失効 → 取得できない
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
 insert into public.share_links (id, result_id, user_id, token_hash)
-  values ('30000000-0000-0000-0000-00000000000a', '20000000-0000-0000-0000-00000000000a', auth.uid(), encode(digest('secret-token', 'sha256'), 'hex'));
+  values ('30000000-0000-0000-0000-00000000000a', '20000000-0000-0000-0000-00000000000a', auth.uid(), encode(extensions.digest('secret-token', 'sha256'), 'hex'));
 reset role;
 select set_config('request.jwt.claim.sub', '', false);
 set role anon;
 do $$ begin
   if (select count(*) from public.get_shared_result('secret-token')) <> 0 then raise exception 'FAIL: disabled link is readable'; end if;
-  if (select count(*) from public.results) <> 0 then raise exception 'FAIL: anon can read results table'; end if;
+  -- anon は results を読めない（権限なし、または RLS で0件）
+  begin
+    if (select count(*) from public.results) <> 0 then raise exception 'FAIL: anon can read results table'; end if;
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 reset role;
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');

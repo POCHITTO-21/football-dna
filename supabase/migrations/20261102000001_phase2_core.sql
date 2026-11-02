@@ -6,7 +6,7 @@
 --   * service role は使わない設計（公開閲覧は SECURITY DEFINER 関数で必要最小限の列だけ返す）。
 --   * チーム関連テーブル・コーチ向けRLSは Phase 3 のマイグレーションで追加する。
 
-create extension if not exists pgcrypto;
+create extension if not exists pgcrypto;  -- Supabase では既定で extensions スキーマに導入済み
 
 -- ---------------------------------------------------------------- profiles
 create table public.profiles (
@@ -151,7 +151,8 @@ create trigger share_links_guard
 -- 公開閲覧: トークンから、共有用の最小限の情報だけ返す（profile_snapshot や回答は返さない）
 create or replace function public.get_shared_result(token text)
 returns table (type_id text, composite_type_id text, axis_scores jsonb, top_positions text[], nickname text, created_at timestamptz)
-language sql stable security definer set search_path = public as $$
+-- Supabase では pgcrypto が extensions スキーマにあるため search_path に含める
+language sql stable security definer set search_path = public, extensions as $$
   select r.type_id, r.composite_type_id, r.axis_scores, r.top_positions,
          case when s.include_nickname then p.display_name else null end,
          r.created_at
@@ -225,3 +226,12 @@ begin
 end $$;
 revoke all on function public.delete_my_account() from public;
 grant execute on function public.delete_my_account() to authenticated;
+
+-- ---------------------------------------------------------------- テーブル権限
+-- Supabase の「新しいテーブルを自動的に公開」がオフでも動くよう、必要な権限だけを明示的に付与する。
+-- 実際にどの行を読めるか・書けるかは上の RLS で制御される。
+grant usage on schema public to anon, authenticated;
+grant select on public.question_sets, public.questions to anon, authenticated;
+grant select, insert, update, delete on
+  public.profiles, public.diagnosis_sessions, public.answers, public.results, public.share_links
+  to authenticated;
