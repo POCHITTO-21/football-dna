@@ -40,3 +40,20 @@ describe("リダイレクト先の検証", () => {
     expect(safeNextPath(undefined)).toBe("/me");
   });
 });
+
+import { getSupabaseEnv } from "./supabase/config";
+describe("Supabase の設定読み込み", () => {
+  it("URL にパスが付いていてもオリジンだけを使い、未設定・不正値は null", () => {
+    const old = { ...process.env };
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "k";
+    process.env.NEXT_PUBLIC_SUPABASE_URL = "https://abc.supabase.co/rest/v1/";
+    expect(getSupabaseEnv()?.url).toBe("https://abc.supabase.co");
+    process.env.NEXT_PUBLIC_SUPABASE_URL = " https://abc.supabase.co ";
+    expect(getSupabaseEnv()?.url).toBe("https://abc.supabase.co");
+    process.env.NEXT_PUBLIC_SUPABASE_URL = "http://abc.supabase.co";
+    expect(getSupabaseEnv()).toBeNull();
+    process.env.NEXT_PUBLIC_SUPABASE_URL = "";
+    expect(getSupabaseEnv()).toBeNull();
+    process.env = old;
+  });
+});
