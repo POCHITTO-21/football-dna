@@ -5,7 +5,8 @@
 > 診断は自己理解と対話のためのもので、運動能力の測定や選手選抜の判断に使うものではありません。
 
 - 実装計画・採点アルゴリズム・DB設計・進捗: [docs/PLAN.md](docs/PLAN.md)
-- 現在の状態: **Phase 1（ゲスト診断）完了**。ログイン・共有リンク・チーム管理（Phase 2〜3）は未実装です。
+- 現在の状態: **Phase 1（ゲスト診断）完了、Phase 2（ログイン・履歴・共有リンク）実装済み**。チーム管理（Phase 3）以降は未実装です。
+- Supabase を設定しない場合はゲスト診断だけが動き、ログイン関連のメニューは表示されません。
 
 ## 必要なもの
 
@@ -39,6 +40,9 @@ npm test
 npm run typecheck
 npm run lint
 
+# DB（マイグレーション・RLS）のテスト ※PostgreSQL が必要。下記参照
+# npm run test:db
+
 # 本番ビルドの確認
 npm run build
 
@@ -51,26 +55,51 @@ E2E は自動で本番ビルドを作り、ポート 3100 でサーバーを起�
 
 ## 環境変数
 
-Phase 1 は **環境変数なしで動作** します。Phase 2 以降で Supabase を使う際は、`.env.example` を `.env.local` にコピーして値を設定します。
+Phase 1（ゲスト診断）は **環境変数なしで動作** します。ログイン・履歴・共有リンク（Phase 2）を使うときは `.env.local` を作ります。
 
 ```powershell
 Copy-Item .env.example .env.local
+notepad .env.local
 ```
 
 | 変数 | 用途 | 公開範囲 |
 |---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase URL（Phase 2〜） | クライアント可 |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key（Phase 2〜） | クライアント可（RLS前提） |
-| `SUPABASE_SERVICE_ROLE_KEY` | 管理操作（Phase 2〜） | **サーバーのみ。絶対に公開しない** |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase の Project URL | クライアント可 |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase の anon (public) key | クライアント可（RLSで保護） |
+| `NEXT_PUBLIC_SITE_URL` | サイトのURL（共有リンク・ログインメールのリンク先） | クライアント可 |
 
-秘密鍵をコードやリポジトリに書かないでください。
+service role key は使いません（設定しないでください）。秘密の値をコードやリポジトリに書かないでください。
+
+## Supabase の準備（Phase 2）
+
+1. https://supabase.com で無料アカウントを作り、「New project」でプロジェクトを作成（Region は Tokyo 推奨）。
+2. 左メニュー **SQL Editor** で、次の2つのファイルの中身を順に貼り付けて「Run」。
+   - `supabase/migrations/20261102000001_phase2_core.sql`（テーブル・RLS・関数）
+   - `supabase/seed.sql`（設問40問）
+3. **Authentication → URL Configuration**
+   - Site URL: `http://localhost:3000`（公開後は本番URL）
+   - Redirect URLs に `http://localhost:3000/auth/callback` を追加（公開後は本番URLの `/auth/callback` も）
+4. **Project Settings → API** の Project URL と anon public key を `.env.local` に貼る。
+5. `npm run dev` を再起動し、右上の「マイページ」からメールでログインできることを確認。
+
+> Supabase 標準のメール送信は1時間あたりの送信数に制限があります。公開時は Authentication → SMTP Settings で独自のメール送信設定を推奨します。
+
+### DB のテスト（任意）
+
+PostgreSQL 16 があれば、マイグレーションと RLS（他人の結果を読めない、未成年は保護者確認なしで公開共有できない等）をローカルで検証できます。
+
+```powershell
+$env:DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/postgres"
+npm run test:db
+```
 
 ## デプロイ（Vercel）
 
 1. このリポジトリを GitHub に push する
 2. https://vercel.com で「Add New → Project」からリポジトリを選ぶ（Framework: Next.js は自動検出）
-3. Phase 1 は環境変数の設定不要。そのまま「Deploy」
-4. Phase 2 以降は Vercel の「Settings → Environment Variables」に上表の値を登録する
+3. ゲスト診断だけなら環境変数の設定不要。そのまま「Deploy」
+4. ログイン機能を使う場合は「Settings → Environment Variables」に上表の3つを登録し（`NEXT_PUBLIC_SITE_URL` は本番URL）、再デプロイ
+5. Supabase の Authentication → URL Configuration に本番URLと `/auth/callback` を追加
 
 詳細な公開前チェック（プライバシーポリシー、保護者同意、権限・漏洩テストなど）は Phase 4 で手順化します。
 
@@ -81,12 +110,16 @@ Copy-Item .env.example .env.local
 | `src/data/` | 設問40件・16タイプ・11ポジション・8軸の定義（JSON） |
 | `src/lib/scoring/` | 採点の純粋関数とテスト |
 | `src/lib/storage.ts` | ゲスト用のローカル保存（localStorage） |
+| `src/app/actions/account.ts` | ログイン・保存・履歴・共有リンク・削除のサーバー処理 |
+| `supabase/` | マイグレーション、seed、RLSテスト |
 | `src/app/` | 画面（App Router） |
 | `src/components/` | UI コンポーネント |
 | `e2e/` | Playwright テスト |
 
-## データの扱い（Phase 1）
+## データの扱い
 
 - 氏名・生年月日・学校・住所・顔写真は収集しません。
-- 回答と結果はブラウザの localStorage にだけ保存し、サーバーには送信しません。
+- ゲストの回答と結果はブラウザの localStorage にだけ保存し、サーバーには送信しません。
+- ログイン後、本人が「アカウントに保存」を押した結果だけをサーバーに保存します（他人からは RLS で読めません）。
+- 共有リンクは作成時は非公開。本人が公開した場合のみ、タイプ名・8軸・ポジション候補（と選んだ場合のニックネーム）が見えます。高校生以下は保護者確認が済むまで公開できません。
 - `/about` からこの端末のデータをすべて削除できます。

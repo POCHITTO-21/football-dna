@@ -76,3 +76,14 @@ test("他人の結果IDは表示されない", async ({ page }) => {
   await page.goto("/results/0123456789abcdef0123456789abcdef");
   await expect(page.getByRole("heading", { name: "結果が見つかりません" })).toBeVisible();
 });
+
+test("Supabase未設定ではアカウント機能が無効と表示され、ゲスト診断は動く", async ({ page }) => {
+  for (const path of ["/login", "/me", "/settings"]) {
+    await page.goto(path);
+    await expect(page.getByRole("heading", { name: "アカウント機能は準備中です" })).toBeVisible();
+  }
+  await expect(page.getByRole("link", { name: "マイページ" })).toHaveCount(0);
+  const res = await page.goto("/s/" + "a".repeat(43));
+  expect(res?.status()).toBe(404);
+  await expect(page.getByRole("heading", { name: "このリンクは表示できません" })).toBeVisible();
+});

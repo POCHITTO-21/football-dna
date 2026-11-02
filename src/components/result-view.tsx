@@ -1,20 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SaveToAccount } from "@/components/save-to-account";
+import { useResultEntry } from "@/components/use-result-entry";
+import { deleteMyResult } from "@/app/actions/account";
 import { AxisRadar } from "@/components/axis-radar";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
 import { AXIS_IDS } from "@/lib/scoring/model";
 import { axisDef, positionLabel, POSITION_CONFIG, typeDef } from "@/lib/scoring/config";
-import { deleteResult, getResult, type StoredResult } from "@/lib/storage";
+import { deleteResult } from "@/lib/storage";
 
-export function ResultView({ id }: { id: string }) {
+export function ResultView({ id, accountEnabled }: { id: string; accountEnabled: boolean }) {
   const router = useRouter();
-  const [entry, setEntry] = useState<StoredResult | null | undefined>(undefined);
-
-  useEffect(() => {
-    setEntry(getResult(id));
-  }, [id]);
+  const loaded = useResultEntry(id, accountEnabled);
+  const entry = loaded === undefined ? undefined : (loaded?.entry ?? null);
 
   if (entry === undefined) return <p className="py-20 text-center text-ink-muted">読み込み中…</p>;
   if (entry === null) {
@@ -22,7 +21,7 @@ export function ResultView({ id }: { id: string }) {
       <Card className="space-y-4 text-center">
         <h1 className="text-xl font-bold">結果が見つかりません</h1>
         <p className="text-sm text-ink-muted">
-          診断結果は、診断したこの端末のブラウザにだけ保存されています。別の端末やブラウザ、削除済みの結果は表示できません。
+          診断結果は、診断した端末のブラウザ（またはログインしたアカウント）にだけ保存されています。別の端末・他の人の結果・削除済みの結果は表示できません。
         </p>
         <LinkButton href="/diagnosis/profile" block>
           診断する
@@ -36,7 +35,15 @@ export function ResultView({ id }: { id: string }) {
   const composite = r.compositeTypeId ? typeDef(r.compositeTypeId) : null;
   const nickname = entry.profile.nickname?.trim();
 
-  const onDelete = () => {
+  const source = loaded?.source ?? "local";
+  const onDelete = async () => {
+    if (source === "account") {
+      if (!window.confirm("この診断結果をアカウントから削除します（共有リンクも削除されます）。よろしいですか？")) return;
+      const r = await deleteMyResult(entry.id);
+      if (!r.ok) return window.alert(r.error);
+      router.replace("/me");
+      return;
+    }
     if (!window.confirm("この診断結果をこの端末から削除します。よろしいですか？")) return;
     deleteResult(entry.id);
     router.replace("/");
@@ -178,6 +185,8 @@ export function ResultView({ id }: { id: string }) {
         </details>
       </Card>
 
+      {accountEnabled && source === "local" && <SaveToAccount entry={entry} />}
+
       <div className="space-y-3">
         <LinkButton href={`/results/${entry.id}/share`} size="lg" block>
           SNS用の画像をつくる
@@ -186,7 +195,7 @@ export function ResultView({ id }: { id: string }) {
           もう一度診断する
         </LinkButton>
         <Button variant="danger" block onClick={onDelete}>
-          この結果を削除する
+          {source === "account" ? "この結果をアカウントから削除する" : "この結果を削除する"}
         </Button>
       </div>
 
