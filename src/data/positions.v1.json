@@ -1,0 +1,29 @@
+{
+  "version": "positions-2026.11-v1",
+  "footSideBonus": 2,
+  "positions": [
+    { "id": "GK", "label": "ゴールキーパー", "weights": { "DEF": 2, "TAC": 3, "TEAM": 3, "DUEL": 1 }, "requiresGk": true,
+      "note": "GKの技術はこの診断では測っていません。GKへの興味・経験に基づく参考値です。" },
+    { "id": "CB", "label": "センターバック", "weights": { "DEF": 3, "DUEL": 2, "TAC": 2, "TEAM": 2, "PAS": 1 },
+      "note": "相手との競り合いや声かけが多いポジションです。周りとの連携が鍵になります。" },
+    { "id": "RB", "label": "右サイドバック", "weights": { "DEF": 2, "MOB": 3, "PAS": 1, "DRB": 1, "TEAM": 1 }, "side": "R",
+      "note": "攻守の上下動が多いポジションです。上がるタイミングの判断が大切です。" },
+    { "id": "LB", "label": "左サイドバック", "weights": { "DEF": 2, "MOB": 3, "PAS": 1, "DRB": 1, "TEAM": 1 }, "side": "L",
+      "note": "攻守の上下動が多いポジションです。上がるタイミングの判断が大切です。" },
+    { "id": "DM", "label": "守備的MF", "weights": { "DEF": 3, "TAC": 3, "PAS": 2, "TEAM": 1, "DUEL": 1 },
+      "note": "守備と攻撃のつなぎ役です。周りを見る習慣がより重要になります。" },
+    { "id": "CM", "label": "セントラルMF", "weights": { "PAS": 3, "TAC": 2, "MOB": 2, "DEF": 1, "TEAM": 1 },
+      "note": "攻守両面で多くのプレーに関わるポジションです。" },
+    { "id": "AM", "label": "攻撃的MF", "weights": { "PAS": 3, "TAC": 2, "DRB": 2, "FIN": 1 },
+      "note": "相手の密集の中でプレーする場面が多く、素早い判断が求められます。" },
+    { "id": "RW", "label": "右ウイング", "weights": { "DRB": 3, "MOB": 2, "FIN": 1, "PAS": 1 },
+      "note": "サイドでの1対1や仕掛けが多いポジションです。守備への戻りも意識しましょう。" },
+    { "id": "LW", "label": "左ウイング", "weights": { "DRB": 3, "MOB": 2, "FIN": 1, "PAS": 1 },
+      "note": "サイドでの1対1や仕掛けが多いポジションです。守備への戻りも意識しましょう。" },
+    { "id": "ST", "label": "ストライカー", "weights": { "FIN": 3, "DUEL": 2, "MOB": 1, "TAC": 1 },
+      "note": "ゴール前での競り合いが多いポジションです。前線からの守備も役割の一つです。" },
+    { "id": "SS", "label": "セカンドストライカー", "weights": { "FIN": 2, "TAC": 2, "DRB": 2, "PAS": 1, "MOB": 1 },
+      "note": "前線と中盤をつなぐ役割です。受ける位置の工夫が大切です。" }
+  ],
+  "extraLabels": { "CF": "センターフォワード" }
+}
