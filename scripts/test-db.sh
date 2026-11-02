@@ -10,4 +10,4 @@ URL="$(printf %s "$DATABASE_URL" | sed -E "s#(postgres(ql)?://[^/]*/)[^?]*#\1$DB
 psql "$URL" -q -v ON_ERROR_STOP=1 -f supabase/tests/00_stub_supabase.sql
 for f in supabase/migrations/*.sql; do psql "$URL" -q -v ON_ERROR_STOP=1 -f "$f"; done
 psql "$URL" -q -v ON_ERROR_STOP=1 -f supabase/seed.sql
-for f in supabase/tests/1*.sql; do psql "$URL" -q -v ON_ERROR_STOP=1 -f "$f"; done
+for f in supabase/tests/[1-9]*.sql; do psql "$URL" -q -v ON_ERROR_STOP=1 -f "$f"; done

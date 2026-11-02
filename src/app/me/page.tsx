@@ -54,8 +54,16 @@ export default async function MePage() {
           ))}
         </ul>
       )}
+      <div className="grid grid-cols-2 gap-2">
+        <LinkButton href="/teams" variant="secondary">
+          チーム
+        </LinkButton>
+        <LinkButton href="/guardian" variant="secondary">
+          保護者の方へ
+        </LinkButton>
+      </div>
       <LinkButton href="/settings" variant="secondary" block>
-        共有リンク・データ削除の設定
+        年代・共有リンク・データ削除の設定
       </LinkButton>
     </div>
   );

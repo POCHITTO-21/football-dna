@@ -78,7 +78,7 @@ test("他人の結果IDは表示されない", async ({ page }) => {
 });
 
 test("Supabase未設定ではアカウント機能が無効と表示され、ゲスト診断は動く", async ({ page }) => {
-  for (const path of ["/login", "/me", "/settings"]) {
+  for (const path of ["/login", "/me", "/settings", "/teams", "/teams/join", "/guardian"]) {
     await page.goto(path);
     await expect(page.getByRole("heading", { name: "アカウント機能は準備中です" })).toBeVisible();
   }

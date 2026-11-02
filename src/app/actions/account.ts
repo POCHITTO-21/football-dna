@@ -260,7 +260,7 @@ export async function setShareLinkEnabled(input: unknown): Promise<ActionResult<
     .select(SHARE_COLS)
     .single();
   if (error?.message?.includes("share_not_allowed_for_minor")) {
-    return fail("高校生以下の方は、保護者の確認が済むまで公開共有はできません（チーム機能の公開時に保護者確認の手続きを用意します）。");
+    return fail("18歳未満の方（年代が「回答しない」の方を含む）は、保護者の確認が済むまで公開できません。プライバシー設定の「保護者の確認」から手続きできます。");
   }
   if (error || !data) return fail("更新できませんでした。");
   revalidatePath("/settings");
