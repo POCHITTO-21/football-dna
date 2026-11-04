@@ -37,7 +37,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="mx-auto flex h-14 max-w-xl items-center justify-between px-4">
             <Link href="/" aria-label={m.nav.home} className="flex min-h-11 items-center gap-2 font-black tracking-wider">
               <span aria-hidden className="inline-block size-3 rotate-45 rounded-sm bg-accent" />
-              FOOTBALL <span className="text-accent">DNA</span>
+              <span className="flex flex-col leading-none">
+                <span>
+                  FOOTBALL <span className="text-accent">DNA</span>
+                </span>
+                <span className="mt-0.5 text-[10px] font-bold tracking-[0.15em] text-ink-muted">by FOOTBALL DNA LAB</span>
+              </span>
             </Link>
             <nav className="flex items-center">
               <Link href="/about" className="flex min-h-11 items-center px-2 text-sm text-ink-muted hover:text-ink">
@@ -58,6 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <p>
             {m.footer.disclaimer}
           </p>
+          <p className="mt-2">運営：FOOTBALL DNA LAB</p>
           <p className="mt-2">
             <Link href="/about" className="underline underline-offset-2 hover:text-ink">
               {m.footer.privacy}

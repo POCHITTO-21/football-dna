@@ -95,7 +95,11 @@ $env:DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/postgres"
 npm run test:db
 ```
 
-## デプロイ（Vercel）
+## デプロイ（Netlify・推奨）
+
+Vercel の無料プランは非商用に限られるため、本番は Netlify の無料プランで公開します。手順は [docs/NETLIFY_MIGRATION.md](docs/NETLIFY_MIGRATION.md) を見てください。ビルド設定は `netlify.toml` にあります。
+
+## デプロイ（Vercel・旧手順）
 
 1. https://vercel.com に GitHub アカウントでログイン（Hobby プランは無料）
 2. 「Add New… → Project」→ `football-dna` リポジトリの「Import」

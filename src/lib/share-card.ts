@@ -127,6 +127,11 @@ function brand(ctx: CanvasRenderingContext2D, x: number, y: number, size: number
   ctx.fillText(t1, start, y);
   ctx.fillStyle = C.green;
   ctx.fillText("DNA", start + w1, y);
+  ctx.fillStyle = C.muted;
+  ctx.font = `700 ${Math.round(size * 0.36)}px ${FONT}`;
+  const sub = "by FOOTBALL DNA LAB";
+  const ws = ctx.measureText(sub).width;
+  ctx.fillText(sub, align === "center" ? x - ws / 2 : x, y + size * 0.62);
 }
 
 export function drawShareCard(ctx: CanvasRenderingContext2D, size: ShareSize, data: ShareCardData) {
