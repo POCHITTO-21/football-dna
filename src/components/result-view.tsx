@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { SaveToAccount } from "@/components/save-to-account";
 import { useResultEntry } from "@/components/use-result-entry";
 import { deleteMyResult } from "@/app/actions/account";
+import { NoteGuide } from "@/components/note-guide";
 import { AxisRadar } from "@/components/axis-radar";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
@@ -174,6 +175,8 @@ export function ResultView({ id, accountEnabled }: { id: string; accountEnabled:
           ))}
         </ul>
       </Card>
+
+      <NoteGuide typeId={t.id} typeName={t.name} />
 
       <Card>
         <details>
