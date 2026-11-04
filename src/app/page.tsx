@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { HomeActions } from "@/components/home-actions";
+import Link from "next/link";
 import { AXES, TYPE_CONFIG } from "@/lib/scoring/config";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 export default function HomePage() {
   return (
@@ -63,8 +65,29 @@ export default function HomePage() {
           <li>名前や生年月日は聞きません。回答はこの端末のブラウザにだけ保存されます。</li>
           <li>結果は「いまの自分のプレーの好み」を知るためのものです。うまい・へたや、選手の選抜を決めるものではありません。</li>
           <li>小学生のみなさんは、おうちの人や指導者の人といっしょに取り組んでください。</li>
+          <li>
+            点数の出し方は{" "}
+            <Link href="/about#scoring" className="underline underline-offset-2 hover:text-ink">
+              採点のしくみ
+            </Link>
+            で公開しています。
+          </li>
         </ul>
       </Card>
+
+      {isSupabaseConfigured() && (
+        <Card className="text-sm leading-relaxed text-ink-muted">
+          <h2 className="mb-2 text-base font-bold text-ink">指導者の方へ</h2>
+          <p>
+            チームで診断結果を話し合いに使う「チーム機能」があります。指導者の方のログインが必要です。選手の結果は、本人（18歳未満は保護者も）が同意したときだけ指導者に表示されます。
+          </p>
+          <p className="mt-2">
+            <Link href="/teams" className="font-bold text-accent underline underline-offset-2 hover:text-accent-strong">
+              チーム機能を使う（ログイン）
+            </Link>
+          </p>
+        </Card>
+      )}
     </div>
   );
 }

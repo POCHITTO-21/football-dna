@@ -1,0 +1,7 @@
+# Netlify の設定（Next.js は Netlify が自動で対応します）
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"

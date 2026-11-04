@@ -191,3 +191,13 @@ describe("再現性", () => {
     expect(a.ok && a.result.topPositions[0].positionId).toBe("ST");
   });
 });
+
+describe("「採点のしくみ」ページの説明と設定値が一致する", () => {
+  // src/app/about/page.tsx の説明文を変えずに設定値だけ変えた場合に気づけるようにする
+  it("オールラウンダー最大15点・複合タイプは差3点未満・利き足側+2点", async () => {
+    const { COMPOSITE_GAP } = await import("./score");
+    expect(TYPE_CONFIG.allRounder.maxBonus).toBe(15);
+    expect(COMPOSITE_GAP).toBe(3);
+    expect(POSITION_CONFIG.footSideBonus).toBe(2);
+  });
+});

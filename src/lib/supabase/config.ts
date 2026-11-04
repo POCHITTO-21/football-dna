@@ -25,6 +25,10 @@ export function isSupabaseConfigured(): boolean {
 
 /** 共有リンクなどの絶対URLを作るためのサイトURL */
 export function getSiteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  // Netlify はビルド時に URL（本番URL）を設定する。Vercel は VERCEL_URL。
+  const raw =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    process.env.URL?.trim() ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
   return raw.replace(/\/+$/, "");
 }
