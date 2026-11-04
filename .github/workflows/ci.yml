@@ -6,7 +6,8 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # ubuntu-latest は 26.04 になり、Playwright 1.56 が未対応のため固定
+    runs-on: ubuntu-24.04
     services:
       postgres:
         image: postgres:16
