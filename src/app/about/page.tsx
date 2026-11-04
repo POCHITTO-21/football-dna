@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { DeleteLocalData } from "@/components/delete-local-data";
 
@@ -27,7 +28,17 @@ export default function AboutPage() {
           <li>共有中の端末では、使い終わったら下のボタンでデータを削除してください。</li>
           <li>チームに参加しても、診断結果は自動では指導者に見えません。選手本人が「指導者に結果を見せる」を選び、18歳未満の選手は保護者も同意した場合だけ、そのチームの指導者に表示されます。いつでもやめられます。</li>
           <li>チームの集計は、結果を共有している選手が5人以上のときだけ表示します。指導者のCSV出力や個人結果の閲覧は、チームの操作の記録に残ります。</li>
-          <li>年代は自己申告です。正式公開時にプライバシーポリシーと利用規約を公開します。</li>
+          <li>
+            年代は自己申告です。くわしくは{" "}
+            <Link href="/privacy" className="underline underline-offset-2">
+              プライバシーポリシー
+            </Link>
+            と{" "}
+            <Link href="/terms" className="underline underline-offset-2">
+              利用規約
+            </Link>
+            をご覧ください。
+          </li>
         </ul>
       </Card>
       <Card>

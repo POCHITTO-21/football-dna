@@ -17,6 +17,8 @@ export const ja = {
     disclaimer:
       "FOOTBALL DNA は自己回答にもとづくプレー志向の傾向を示すもので、運動能力の測定や選手選抜の判断に使うものではありません。",
     privacy: "免責事項・プライバシー",
+    privacyPolicy: "プライバシーポリシー",
+    terms: "利用規約",
   },
   offline: {
     title: "オフラインです",
