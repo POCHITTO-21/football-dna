@@ -10,6 +10,7 @@ export const ja = {
   nav: {
     skipToContent: "本文へスキップ",
     about: "この診断について",
+    aboutShort: "診断とは",
     myPage: "マイページ",
     home: "FOOTBALL DNA トップへ",
   },

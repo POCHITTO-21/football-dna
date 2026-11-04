@@ -35,21 +35,22 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <header className="sticky top-0 z-40 border-b border-navy-800 bg-navy-950/90 backdrop-blur">
           <div className="mx-auto flex h-14 max-w-xl items-center justify-between px-4">
-            <Link href="/" aria-label={m.nav.home} className="flex min-h-11 items-center gap-2 font-black tracking-wider">
+            <Link href="/" aria-label={m.nav.home} className="flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap font-black tracking-wide sm:tracking-wider">
               <span aria-hidden className="inline-block size-3 rotate-45 rounded-sm bg-accent" />
               <span className="flex flex-col leading-none">
                 <span>
                   FOOTBALL <span className="text-accent">DNA</span>
                 </span>
-                <span className="mt-0.5 text-[10px] font-bold tracking-[0.15em] text-ink-muted">by FOOTBALL DNA LAB</span>
+                <span className="mt-0.5 text-[9px] font-bold tracking-[0.08em] text-ink-muted sm:text-[10px] sm:tracking-[0.15em]">by FOOTBALL DNA LAB</span>
               </span>
             </Link>
-            <nav className="flex items-center">
-              <Link href="/about" className="flex min-h-11 items-center px-2 text-sm text-ink-muted hover:text-ink">
-                {m.nav.about}
+            <nav className="flex items-center whitespace-nowrap">
+              <Link href="/about" className="flex min-h-11 items-center px-1.5 text-xs text-ink-muted hover:text-ink sm:px-2 sm:text-sm">
+                <span className="hidden min-[360px]:inline">{m.nav.about}</span>
+                <span className="min-[360px]:hidden">{m.nav.aboutShort}</span>
               </Link>
               {isSupabaseConfigured() && (
-                <Link href="/me" className="flex min-h-11 items-center px-2 text-sm font-bold text-accent hover:text-accent-strong">
+                <Link href="/me" className="flex min-h-11 items-center px-1.5 text-xs font-bold text-accent hover:text-accent-strong sm:px-2 sm:text-sm">
                   {m.nav.myPage}
                 </Link>
               )}
