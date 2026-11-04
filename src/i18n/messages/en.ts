@@ -12,6 +12,7 @@ export const en: Messages = {
   nav: {
     skipToContent: "Skip to content",
     about: "About",
+    aboutShort: "About",
     myPage: "My page",
     home: "FOOTBALL DNA home",
   },
