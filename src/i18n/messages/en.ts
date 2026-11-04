@@ -19,6 +19,8 @@ export const en: Messages = {
     disclaimer:
       "FOOTBALL DNA shows tendencies based on your own answers. It does not measure ability and must not be used to select players.",
     privacy: "Disclaimer & privacy",
+    privacyPolicy: "Privacy policy",
+    terms: "Terms of use",
   },
   offline: {
     title: "You are offline",

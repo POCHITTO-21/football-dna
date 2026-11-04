@@ -62,6 +62,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Link href="/about" className="underline underline-offset-2 hover:text-ink">
               {m.footer.privacy}
             </Link>
+            {" ・ "}
+            <Link href="/privacy" className="underline underline-offset-2 hover:text-ink">
+              {m.footer.privacyPolicy}
+            </Link>
+            {" ・ "}
+            <Link href="/terms" className="underline underline-offset-2 hover:text-ink">
+              {m.footer.terms}
+            </Link>
           </p>
         </footer>
         <ServiceWorkerRegister updateLabel={m.pwa.updateReady} reloadLabel={m.pwa.reload} />

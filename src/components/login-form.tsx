@@ -3,6 +3,7 @@ import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { requestLoginLink } from "@/app/actions/account";
+import Link from "next/link";
 
 export function LoginForm({ next }: { next: string }) {
   const [email, setEmail] = useState("");
@@ -40,6 +41,17 @@ export function LoginForm({ next }: { next: string }) {
         <Button type="submit" block disabled={pending || !email}>
           {pending ? "送信中…" : "ログインリンクを送る"}
         </Button>
+        <p className="text-xs leading-relaxed text-ink-muted">
+          ログインすると、
+          <Link href="/terms" className="underline underline-offset-2">
+            利用規約
+          </Link>
+          と
+          <Link href="/privacy" className="underline underline-offset-2">
+            プライバシーポリシー
+          </Link>
+          に同意したものとみなします。
+        </p>
         {message && (
           <p role={message.ok ? "status" : "alert"} className={message.ok ? "text-sm text-accent" : "text-sm text-danger"}>
             {message.text}
