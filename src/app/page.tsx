@@ -37,6 +37,15 @@ export default function HomePage() {
       </div>
 
       <Card>
+        <p className="text-xs font-bold tracking-[0.2em] text-accent">FOOTBALL DNA NUTRITION</p>
+        <h2 className="mb-2 mt-1 text-lg font-bold">食事ガイド</h2>
+        <p className="text-sm text-ink-muted">年代と練習の状況に合わせた、食事の考え方と献立の例。診断していなくても見られます。</p>
+        <Link href="/nutrition" className="mt-3 inline-flex min-h-11 items-center font-bold text-accent underline underline-offset-2 hover:text-accent-strong">
+          食事ガイドを見る
+        </Link>
+      </Card>
+
+      <Card>
         <h2 className="mb-3 text-lg font-bold">8つのプレー志向</h2>
         <ul className="grid grid-cols-2 gap-2 text-sm">
           {AXES.map((a) => (

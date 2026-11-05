@@ -1,0 +1,40 @@
+{
+  "version": "nutrition-types-2026.11-v1",
+  "commonNote": "タイプで必要な栄養の量が決まるわけではありません。ここに書いているのは、そのタイプに多いと想定される練習の特徴です。実際の練習量が違う場合は、上で選んだ「活動状況」を優先してください。",
+  "groups": {
+    "endurance": {
+      "label": "長い時間走り続ける練習が多い想定",
+      "description": "試合や練習の中で、長い時間動き続けることが多いと想定されるタイプです。練習時間が長い日は、練習前後の補食で主食（ごはん・パン・めん類など）を切らさないようにしましょう。"
+    },
+    "repeated_sprint": {
+      "label": "ダッシュや仕掛けを繰り返す練習が多い想定",
+      "description": "ダッシュや仕掛けなど、短く強い動きを何度も繰り返す練習が多いと想定されるタイプです。強度の高い日は、練習のあとなるべく早く、主食とたんぱく質（肉・魚・卵・大豆製品・乳製品）をとりましょう。"
+    },
+    "contact": {
+      "label": "競り合いや接触が多い練習の想定",
+      "description": "競り合いや体をぶつける場面が多いと想定されるタイプです。練習のあとの食事で、主食と主菜（肉・魚・卵・大豆製品）をそろえることを意識しましょう。"
+    },
+    "positional": {
+      "label": "判断や位置取りが中心の練習の想定",
+      "description": "判断や位置取りが中心で、日によって走る量が変わりやすいと想定されるタイプです。その日の実際の練習量に合わせて「活動状況」を選びましょう。"
+    }
+  },
+  "types": {
+    "T01": "endurance",
+    "T08": "endurance",
+    "T13": "endurance",
+    "T14": "endurance",
+    "T02": "repeated_sprint",
+    "T03": "repeated_sprint",
+    "T04": "repeated_sprint",
+    "T05": "repeated_sprint",
+    "T07": "repeated_sprint",
+    "T06": "contact",
+    "T09": "contact",
+    "T11": "contact",
+    "T10": "positional",
+    "T12": "positional",
+    "T15": "positional",
+    "T16": "positional"
+  }
+}

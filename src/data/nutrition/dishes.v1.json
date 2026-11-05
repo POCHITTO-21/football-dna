@@ -1,0 +1,3256 @@
+{
+  "version": "nutrition-dishes-2026.11-v1",
+  "_comment": "献立データ。目安量は家庭の器の大きさなどでの量の目安で、栄養計算の結果ではありません。栄養成分の数値は載せません。",
+  "dishes": [
+    {
+      "id": "D-BF-001",
+      "title": "和の朝ごはん（ごはん・焼き鮭・みそ汁・青菜・みかん）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "breakfast",
+        "pre_match_meal"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "salmon",
+          "name": "塩鮭",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "greens",
+          "name": "小松菜のおひたし（かつお節）",
+          "role": "side",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "salmon": "1切れ",
+        "miso_soup": "お椀に1杯",
+        "greens": "小鉢に1つ",
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "塩鮭をグリルかフライパンで中まで火が通るまで焼く。",
+        "小松菜をゆでて水けをしぼり、食べやすく切ってかつお節をのせる。",
+        "豆腐・わかめ・野菜でみそ汁をつくる。",
+        "ごはん・果物と一緒に並べる。"
+      ],
+      "estimatedCookingMinutes": 20,
+      "nutritionPurpose": "主食でエネルギー、鮭でたんぱく質、青菜とみかんでビタミン・ミネラルをとる基本の朝食。",
+      "substitutions": [
+        {
+          "ingredientId": "salmon",
+          "alternatives": [
+            "焼きさば",
+            "卵焼き（卵が食べられる場合）",
+            "納豆"
+          ]
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "さけ",
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。 乳製品をとらない献立なので、昼食や補食で牛乳・乳製品をとりましょう。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "運動開始の2〜3時間前に食事を済ませる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-BF-002",
+      "title": "トーストの朝ごはん（トースト・目玉焼き・サラダ・牛乳・バナナ）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "breakfast",
+        "pre_match_meal"
+      ],
+      "ingredients": [
+        {
+          "id": "bread",
+          "name": "食パン",
+          "role": "staple",
+          "allergens": [
+            "wheat",
+            "milk"
+          ]
+        },
+        {
+          "id": "egg",
+          "name": "卵",
+          "role": "main",
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "id": "salad",
+          "name": "ミニトマト・レタス・ブロッコリー",
+          "role": "side",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "banana",
+          "name": "バナナ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "bread": {
+          "elem_low": "6枚切り1枚",
+          "elem_high": "6枚切り1〜2枚",
+          "junior_high": "6枚切り2枚",
+          "high_school": "6枚切り2〜3枚",
+          "adult": "6枚切り2枚（活動量に合わせて）"
+        },
+        "egg": "1〜2個",
+        "salad": "小皿に1つ",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "banana": "1本"
+      },
+      "cookingSteps": [
+        "食パンをトーストする。",
+        "卵を目玉焼きにして、黄身までしっかり火を通す。",
+        "ブロッコリーをゆで、ミニトマト・レタスと盛る。",
+        "牛乳とバナナを添える。"
+      ],
+      "estimatedCookingMinutes": 10,
+      "nutritionPurpose": "パンでエネルギー、卵と牛乳でたんぱく質とカルシウム、野菜と果物でビタミンをとる手軽な朝食。",
+      "substitutions": [
+        {
+          "ingredientId": "egg",
+          "alternatives": [
+            "ハム",
+            "ツナ",
+            "チーズ"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "wheat",
+          "milk",
+          "egg"
+        ],
+        "others": [
+          "バナナ"
+        ],
+        "note": "市販の食パンには乳や卵を含むものがあります。原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-BF-003",
+      "title": "納豆ごはんの朝ごはん（ごはん・納豆・具だくさんみそ汁・ヨーグルト・キウイ）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "rest"
+      ],
+      "mealTiming": [
+        "breakfast"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "natto",
+          "name": "納豆",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "veg_miso",
+          "name": "具だくさんみそ汁（豆腐・にんじん・大根・ねぎ）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "kiwi",
+          "name": "キウイフルーツ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "natto": "1パック",
+        "veg_miso": "お椀に1杯",
+        "yogurt": "1個（小カップ）",
+        "kiwi": "1個"
+      },
+      "cookingSteps": [
+        "にんじん・大根を薄く切って煮て、豆腐とねぎを入れ、みそをとく。",
+        "納豆をよく混ぜ、ごはんにのせる。",
+        "ヨーグルトとキウイを添える。"
+      ],
+      "estimatedCookingMinutes": 15,
+      "nutritionPurpose": "主食・主菜・副菜・乳製品・果物がそろう朝食。具だくさんのみそ汁で野菜もとれます。",
+      "substitutions": [
+        {
+          "ingredientId": "natto",
+          "alternatives": [
+            "卵焼き",
+            "焼き魚",
+            "豆腐"
+          ]
+        },
+        {
+          "ingredientId": "kiwi",
+          "alternatives": [
+            "みかん",
+            "いちご",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk"
+        ],
+        "others": [
+          "大豆",
+          "キウイフルーツ"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-BF-004",
+      "title": "おにぎり2種の朝ごはん（おにぎり・卵焼き・みそ汁・牛乳・バナナ）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T08",
+        "T13",
+        "T14"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day"
+      ],
+      "mealTiming": [
+        "breakfast",
+        "pre_match_meal"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri",
+          "name": "おにぎり（塩・梅・おかかなど）",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "tamagoyaki",
+          "name": "卵焼き",
+          "role": "main",
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "banana",
+          "name": "バナナ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "tamagoyaki": "2〜3切れ",
+        "miso_soup": "お椀に1杯",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "banana": "1本"
+      },
+      "cookingSteps": [
+        "ごはんをにぎっておにぎりにする（具は梅・おかか・鮭など食べ慣れたもの）。",
+        "卵焼きを焼き、中まで火を通す。",
+        "みそ汁、牛乳、バナナを添える。"
+      ],
+      "estimatedCookingMinutes": 15,
+      "nutritionPurpose": "長い時間動く練習が多い想定のタイプ向けに、朝から主食をしっかりとれる形にした朝食。食べきれない分は練習前の補食に回せます。",
+      "substitutions": [
+        {
+          "ingredientId": "tamagoyaki",
+          "alternatives": [
+            "焼き鮭",
+            "納豆",
+            "ツナ"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "egg",
+          "milk"
+        ],
+        "others": [
+          "大豆",
+          "バナナ"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-LU-001",
+      "title": "親子丼のセット（親子丼・小松菜のみそ汁・ヨーグルト・りんご）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "lunch",
+        "pre_match_meal"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "chicken_egg",
+          "name": "鶏肉と卵（親子丼の具・玉ねぎ）",
+          "role": "main",
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "id": "komatsuna_miso",
+          "name": "小松菜のみそ汁",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "apple",
+          "name": "りんご",
+          "role": "fruit",
+          "allergens": []
+        },
+        {
+          "id": "soy_sauce",
+          "name": "しょうゆ",
+          "role": "side",
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "chicken_egg": "鶏もも肉 1/3〜1/2枚・卵1〜2個",
+        "komatsuna_miso": "お椀に1杯",
+        "yogurt": "1個（小カップ）",
+        "apple": "1/4〜1/2個",
+        "soy_sauce": "少々"
+      },
+      "cookingSteps": [
+        "玉ねぎと鶏肉をだし・しょうゆ・みりんで煮る。",
+        "とき卵を回し入れ、卵にしっかり火が通るまで加熱する。",
+        "ごはんにのせる。",
+        "みそ汁・ヨーグルト・りんごを添える。"
+      ],
+      "estimatedCookingMinutes": 20,
+      "nutritionPurpose": "ごはんでエネルギー、鶏肉と卵でたんぱく質をとる丼。汁物と果物で副菜・果物を補います。",
+      "substitutions": [
+        {
+          "ingredientId": "chicken_egg",
+          "alternatives": [
+            "豚肉と玉ねぎ（卵なしの丼）",
+            "鮭のそぼろ"
+          ]
+        },
+        {
+          "ingredientId": "yogurt",
+          "alternatives": [
+            "牛乳",
+            "チーズ"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "egg",
+          "milk",
+          "wheat"
+        ],
+        "others": [
+          "鶏肉",
+          "大豆",
+          "りんご"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-LU-002",
+      "title": "鶏肉と野菜のうどん＋おにぎり＋牛乳＋みかん",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "lunch",
+        "pre_match_meal"
+      ],
+      "ingredients": [
+        {
+          "id": "udon",
+          "name": "うどん（ゆで）",
+          "role": "staple",
+          "allergens": [
+            "wheat"
+          ]
+        },
+        {
+          "id": "onigiri",
+          "name": "おにぎり（塩・梅・おかかなど）",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "chicken_veg",
+          "name": "鶏肉・にんじん・ねぎ・ほうれん草",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        },
+        {
+          "id": "soy_sauce",
+          "name": "しょうゆ",
+          "role": "side",
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "udon": {
+          "elem_low": "1/2〜2/3玉",
+          "elem_high": "1玉",
+          "junior_high": "1〜1.5玉",
+          "high_school": "1.5〜2玉",
+          "adult": "1〜2玉（活動量に合わせて）"
+        },
+        "onigiri": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "chicken_veg": "鶏肉 50〜80g・野菜ひとつかみ",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "orange": "1個",
+        "soy_sauce": "少々"
+      },
+      "cookingSteps": [
+        "だしで鶏肉とにんじんを煮て、しょうゆ・みりんで味をつける。",
+        "うどんとほうれん草・ねぎを入れて温める。",
+        "おにぎり・牛乳・みかんを添える。"
+      ],
+      "estimatedCookingMinutes": 15,
+      "nutritionPurpose": "うどんとおにぎりで主食を多めにとれる昼食。消化がよく、食べ慣れた料理なので試合前の食事にも使えます。",
+      "substitutions": [
+        {
+          "ingredientId": "udon",
+          "alternatives": [
+            "ごはん（雑炊にする）",
+            "そば（そばアレルギーがない場合）"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "wheat",
+          "milk"
+        ],
+        "others": [
+          "鶏肉",
+          "大豆"
+        ],
+        "note": "めんつゆ・だしの素には小麦や大豆を含むものがあります。原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "運動開始の2〜3時間前に食事を済ませる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-LU-003",
+      "title": "ミートソーススパゲッティ＋サラダ＋ヨーグルト＋バナナ",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "rest"
+      ],
+      "mealTiming": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "pasta",
+          "name": "スパゲッティ",
+          "role": "staple",
+          "allergens": [
+            "wheat"
+          ]
+        },
+        {
+          "id": "meat_sauce",
+          "name": "ミートソース（合いびき肉・玉ねぎ・にんじん・トマト缶）",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "salad",
+          "name": "ブロッコリー・コーンのサラダ",
+          "role": "side",
+          "allergens": []
+        },
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "banana",
+          "name": "バナナ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "pasta": {
+          "elem_low": "乾めん50〜60g",
+          "elem_high": "乾めん70〜80g",
+          "junior_high": "乾めん100g",
+          "high_school": "乾めん100〜130g",
+          "adult": "乾めん100g前後（活動量に合わせて）"
+        },
+        "meat_sauce": "ひき肉 60〜100g分",
+        "salad": "小皿に1つ",
+        "yogurt": "1個（小カップ）",
+        "banana": "1本"
+      },
+      "cookingSteps": [
+        "玉ねぎ・にんじんをみじん切りにして、ひき肉と炒める。",
+        "トマト缶を加えて10分ほど煮込み、塩・こしょうで味をととのえる。",
+        "スパゲッティをゆでてソースをかける。",
+        "ゆでたブロッコリーとコーンのサラダ、ヨーグルト・バナナを添える。"
+      ],
+      "estimatedCookingMinutes": 30,
+      "nutritionPurpose": "めんでエネルギー、ひき肉でたんぱく質と鉄、トマトや野菜でビタミンをとる一皿。",
+      "substitutions": [
+        {
+          "ingredientId": "pasta",
+          "alternatives": [
+            "ごはん（ミートソースをかけたドライカレー風）",
+            "米粉めん"
+          ]
+        },
+        {
+          "ingredientId": "yogurt",
+          "alternatives": [
+            "牛乳",
+            "チーズ"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "wheat",
+          "milk"
+        ],
+        "others": [
+          "牛肉",
+          "豚肉",
+          "バナナ"
+        ],
+        "note": "市販のミートソースには小麦・乳を含むものがあります。原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "鉄はたんぱく質やビタミンCと一緒にとる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-LU-004",
+      "title": "豚肉と野菜の塩炒め定食（ごはん・塩炒め・みそ汁・みかん）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "pork_veg",
+          "name": "豚肉・キャベツ・ピーマン・にんじん",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "pork_veg": "豚肉 60〜100g・野菜両手に1杯",
+        "miso_soup": "お椀に1杯",
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "豚肉と野菜を食べやすく切る。",
+        "豚肉を中までしっかり炒め、野菜を加えて塩・こしょうで味をつける。",
+        "ごはん・みそ汁・果物と並べる。"
+      ],
+      "estimatedCookingMinutes": 20,
+      "nutritionPurpose": "ごはんでエネルギー、豚肉でたんぱく質、野菜と果物でビタミンをとる定食。しょうゆを使わない塩味です。",
+      "substitutions": [
+        {
+          "ingredientId": "pork_veg",
+          "alternatives": [
+            "鶏肉と野菜の塩炒め",
+            "厚揚げと野菜の炒め物"
+          ]
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "豚肉",
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。 乳製品をとらない献立なので、ほかの食事や補食で牛乳・乳製品をとりましょう。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-DN-001",
+      "title": "鶏の照り焼き定食（ごはん・照り焼き・野菜のおひたし・みそ汁・牛乳・果物）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "chicken",
+          "name": "鶏もも肉の照り焼き",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "greens",
+          "name": "ほうれん草のおひたし",
+          "role": "side",
+          "allergens": []
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        },
+        {
+          "id": "soy_sauce",
+          "name": "しょうゆ",
+          "role": "side",
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "chicken": {
+          "elem_low": "1/3枚",
+          "elem_high": "1/3〜1/2枚",
+          "junior_high": "1/2枚",
+          "high_school": "1/2〜2/3枚",
+          "adult": "1/2枚"
+        },
+        "greens": "小鉢に1つ",
+        "miso_soup": "お椀に1杯",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "orange": "1個",
+        "soy_sauce": "少々"
+      },
+      "cookingSteps": [
+        "鶏肉をフライパンで皮目から焼き、中までしっかり火を通す。",
+        "しょうゆ・みりんを加えてからめる。",
+        "ほうれん草をゆでておひたしにする。",
+        "ごはん・みそ汁・牛乳・果物と並べる。"
+      ],
+      "estimatedCookingMinutes": 25,
+      "nutritionPurpose": "主食・主菜・副菜・乳製品・果物をそろえた基本の夕食。ほうれん草と果物を一緒にとることで、鉄とビタミンCを組み合わせられます。",
+      "substitutions": [
+        {
+          "ingredientId": "chicken",
+          "alternatives": [
+            "鮭の照り焼き",
+            "豚肉のしょうが焼き"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk",
+          "wheat"
+        ],
+        "others": [
+          "鶏肉",
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "鉄はたんぱく質やビタミンCと一緒にとる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-DN-002",
+      "title": "鮭のホイル焼き定食（ごはん・ホイル焼き・ポテトサラダ・みそ汁・ヨーグルト）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "salmon_foil",
+          "name": "鮭ときのこ・玉ねぎのホイル焼き（バター少々）",
+          "role": "main",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "potato_salad",
+          "name": "ポテトサラダ（じゃがいも・きゅうり・にんじん・マヨネーズ）",
+          "role": "side",
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "salmon_foil": "鮭1切れ",
+        "potato_salad": "小鉢に1つ",
+        "miso_soup": "お椀に1杯",
+        "yogurt": "1個（小カップ）"
+      },
+      "cookingSteps": [
+        "アルミホイルに玉ねぎ・きのこ・鮭をのせ、塩・こしょう・バターをのせて包む。",
+        "フライパンにふたをして蒸し焼きにし、鮭に火が通るまで加熱する。",
+        "じゃがいもとにんじんをゆでてつぶし、きゅうり・マヨネーズであえる。",
+        "ごはん・みそ汁・ヨーグルトと並べる。"
+      ],
+      "estimatedCookingMinutes": 30,
+      "nutritionPurpose": "鮭でたんぱく質、じゃがいもとごはんでエネルギーをとる夕食。蒸し焼きなので食べやすい料理です。",
+      "substitutions": [
+        {
+          "ingredientId": "potato_salad",
+          "alternatives": [
+            "粉ふきいも（マヨネーズなし）",
+            "かぼちゃの煮物"
+          ],
+          "note": "マヨネーズには卵が含まれます。"
+        },
+        {
+          "ingredientId": "yogurt",
+          "alternatives": [
+            "牛乳",
+            "果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk",
+          "egg"
+        ],
+        "others": [
+          "さけ",
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-DN-003",
+      "title": "鶏肉と野菜の塩焼き定食（ごはん・塩焼き・みそ汁・果物）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day",
+        "rest"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "chicken_veg_grill",
+          "name": "鶏肉とじゃがいも・にんじん・ブロッコリーの塩焼き",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "veg_miso",
+          "name": "具だくさんみそ汁",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "chicken_veg_grill": "鶏肉 60〜100g・野菜両手に1杯",
+        "veg_miso": "お椀に1杯",
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "鶏肉と野菜を食べやすく切り、塩・こしょうをふる。",
+        "フライパンかオーブンで、鶏肉の中まで火が通るまで焼く。",
+        "具だくさんのみそ汁、ごはん、果物と並べる。"
+      ],
+      "estimatedCookingMinutes": 30,
+      "nutritionPurpose": "主な8品目のアレルゲンを使わずにそろえやすい、基本のバランス夕食。",
+      "substitutions": [
+        {
+          "ingredientId": "chicken_veg_grill",
+          "alternatives": [
+            "豚肉と野菜の塩焼き",
+            "白身魚と野菜の塩焼き"
+          ]
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "鶏肉",
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。 乳製品をとらない献立なので、ほかの食事や補食で牛乳・乳製品をとりましょう。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-DN-004",
+      "title": "鶏肉と野菜の鍋（鍋・ごはん・果物・牛乳）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T06",
+        "T09",
+        "T11"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "rest",
+        "match_day"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "nabe",
+          "name": "鶏肉・豆腐・白菜・ねぎ・にんじん・きのこの鍋",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "nabe": "鶏肉 60〜100g・豆腐1/4丁・野菜たっぷり",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "だしで鶏肉とにんじんを煮る。",
+        "白菜・きのこ・豆腐・ねぎを加え、鶏肉に火が通るまで煮る。",
+        "塩やポン酢など食べ慣れた味で食べる。",
+        "ごはん・牛乳・果物を添える。"
+      ],
+      "estimatedCookingMinutes": 25,
+      "nutritionPurpose": "競り合いの多い練習が多い想定のタイプ向けに、主菜（鶏肉・豆腐）と主食をそろえやすくした夕食。",
+      "substitutions": [
+        {
+          "ingredientId": "nabe",
+          "alternatives": [
+            "豚肉の鍋",
+            "鮭の鍋"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk"
+        ],
+        "others": [
+          "鶏肉",
+          "大豆"
+        ],
+        "note": "ポン酢やだしの素には小麦を含むものがあります。原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "トレーニング後はなるべく早く（2時間以内）、炭水化物とたんぱく質をとる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-DN-005",
+      "title": "試合前日の夕食（ごはん・肉じゃが・青菜・みそ汁・果物・ヨーグルト）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "pre_match"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "nikujaga",
+          "name": "肉じゃが（豚肉・じゃがいも・にんじん・玉ねぎ）",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "greens",
+          "name": "小松菜のおひたし",
+          "role": "side",
+          "allergens": []
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        },
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "soy_sauce",
+          "name": "しょうゆ",
+          "role": "side",
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "nikujaga": "小どんぶりに1杯",
+        "greens": "小鉢に1つ",
+        "miso_soup": "お椀に1杯",
+        "orange": "1個",
+        "yogurt": "1個（小カップ）",
+        "soy_sauce": "少々"
+      },
+      "cookingSteps": [
+        "豚肉・じゃがいも・にんじん・玉ねぎを食べやすく切る。",
+        "豚肉を炒めて野菜を加え、だし・しょうゆ・みりん・砂糖で、じゃがいもがやわらかくなるまで煮る。",
+        "小松菜をゆでておひたしにする。",
+        "ごはん・みそ汁・果物・ヨーグルトと並べる。"
+      ],
+      "estimatedCookingMinutes": 35,
+      "nutritionPurpose": "ごはんとじゃがいもで主食をしっかりとり、エネルギーをためる前日の夕食。生ものを使わない、食べ慣れた家庭料理です。",
+      "substitutions": [
+        {
+          "ingredientId": "nikujaga",
+          "alternatives": [
+            "鶏肉と根菜の煮物",
+            "カレーライス（食べ慣れている場合）"
+          ]
+        },
+        {
+          "ingredientId": "yogurt",
+          "alternatives": [
+            "牛乳"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk",
+          "wheat"
+        ],
+        "others": [
+          "豚肉",
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "試合前日はエネルギーをためる・安全・体調を整える。食べ慣れたものを選び、生ものを避ける"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-DN-006",
+      "title": "試合前日の夕食（ごはん・鶏肉の塩焼き・野菜スープ・果物）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "pre_match"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "chicken",
+          "name": "鶏肉の塩焼き",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "veg_soup",
+          "name": "じゃがいも・にんじん・キャベツのスープ（塩味）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "chicken": "鶏肉 60〜100g",
+        "veg_soup": "お椀に1杯",
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "鶏肉に塩・こしょうをふり、中までしっかり焼く。",
+        "じゃがいも・にんじん・キャベツを水で煮て、塩で味をととのえる。",
+        "ごはん・果物と並べる。"
+      ],
+      "estimatedCookingMinutes": 25,
+      "nutritionPurpose": "主な8品目のアレルゲンを使わずにそろえやすい前日の夕食。ごはんをしっかり食べてエネルギーをためます。",
+      "substitutions": [
+        {
+          "ingredientId": "chicken",
+          "alternatives": [
+            "白身魚の塩焼き",
+            "豚肉の塩焼き"
+          ]
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "鶏肉"
+        ],
+        "note": "コンソメなどのスープの素には小麦・乳を含むものがあります。使う場合は原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "試合前日はエネルギーをためる・安全・体調を整える。食べ慣れたものを選び、生ものを避ける"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-DN-007",
+      "title": "回復の夕食（豚肉のしょうが焼き丼・野菜たっぷりみそ汁・牛乳・果物）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T07"
+      ],
+      "activityCategory": [
+        "high_intensity",
+        "match_day"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "ginger_pork",
+          "name": "豚肉のしょうが焼き（玉ねぎ）",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "veg_miso",
+          "name": "具だくさんみそ汁",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "kiwi",
+          "name": "キウイフルーツ",
+          "role": "fruit",
+          "allergens": []
+        },
+        {
+          "id": "soy_sauce",
+          "name": "しょうゆ",
+          "role": "side",
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "ginger_pork": "豚肉 80〜120g",
+        "veg_miso": "お椀に1杯",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "kiwi": "1個",
+        "soy_sauce": "少々"
+      },
+      "cookingSteps": [
+        "豚肉と玉ねぎを炒め、しょうゆ・みりん・おろししょうがで味をつける。",
+        "ごはんにのせる。",
+        "具だくさんのみそ汁・牛乳・キウイを添える。"
+      ],
+      "estimatedCookingMinutes": 20,
+      "nutritionPurpose": "短く強い動きを繰り返す練習が多い想定のタイプ向けに、練習・試合のあとに主食とたんぱく質をまとめてとれる夕食。",
+      "substitutions": [
+        {
+          "ingredientId": "ginger_pork",
+          "alternatives": [
+            "鶏肉の照り焼き",
+            "牛肉と玉ねぎの炒め物"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        },
+        {
+          "ingredientId": "kiwi",
+          "alternatives": [
+            "みかん",
+            "いちご"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk",
+          "wheat"
+        ],
+        "others": [
+          "豚肉",
+          "大豆",
+          "キウイフルーツ"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "トレーニング後はなるべく早く（2時間以内）、炭水化物とたんぱく質をとる"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-DN-008",
+      "title": "白身魚の煮付け定食（ごはん・煮付け・かぼちゃの煮物・みそ汁・牛乳）",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T10",
+        "T12",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "rest",
+        "pre_match"
+      ],
+      "mealTiming": [
+        "dinner"
+      ],
+      "ingredients": [
+        {
+          "id": "rice",
+          "name": "ごはん",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "white_fish",
+          "name": "白身魚（たら・かれいなど）の煮付け",
+          "role": "main",
+          "allergens": []
+        },
+        {
+          "id": "pumpkin",
+          "name": "かぼちゃの煮物",
+          "role": "side",
+          "allergens": []
+        },
+        {
+          "id": "miso_soup",
+          "name": "みそ汁（豆腐・わかめ・野菜）",
+          "role": "soup",
+          "allergens": []
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "soy_sauce",
+          "name": "しょうゆ",
+          "role": "side",
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "rice": {
+          "elem_low": "茶碗に軽く1杯",
+          "elem_high": "茶碗に1杯",
+          "junior_high": "茶碗に大盛り1杯",
+          "high_school": "茶碗に大盛り1杯〜どんぶり1杯",
+          "adult": "茶碗に1杯〜どんぶり1杯（活動量に合わせて）"
+        },
+        "white_fish": "1切れ",
+        "pumpkin": "小鉢に1つ",
+        "miso_soup": "お椀に1杯",
+        "milk": {
+          "elem_low": "コップ1杯",
+          "elem_high": "コップ1杯",
+          "junior_high": "コップ1杯",
+          "high_school": "コップ1杯",
+          "adult": "コップ1杯"
+        },
+        "soy_sauce": "少々"
+      },
+      "cookingSteps": [
+        "しょうゆ・みりん・砂糖・水を煮立て、白身魚を入れて中まで火が通るまで煮る。",
+        "かぼちゃを食べやすく切り、だしと少しのしょうゆ・砂糖でやわらかく煮る。",
+        "ごはん・みそ汁・牛乳と並べる。"
+      ],
+      "estimatedCookingMinutes": 25,
+      "nutritionPurpose": "基本の形をそろえた和食の夕食。練習量が少なめの日も、主食を抜かずに食べましょう。",
+      "substitutions": [
+        {
+          "ingredientId": "white_fish",
+          "alternatives": [
+            "鮭の塩焼き",
+            "鶏肉の照り焼き"
+          ]
+        },
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk",
+          "wheat"
+        ],
+        "others": [
+          "大豆"
+        ],
+        "note": "みそ・しょうゆなどの調味料は、商品によって原材料が違います。必ず原材料表示を確認してください。 魚の骨に注意してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SN-001",
+      "title": "おにぎり＋果汁100%ジュース",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_before",
+        "pre_match_snack"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri",
+          "name": "おにぎり（塩・梅・おかかなど）",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "juice",
+          "name": "果汁100%ジュース（オレンジなど）",
+          "role": "drink",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri": {
+          "elem_low": "小さめ1個",
+          "elem_high": "小さめ1個",
+          "junior_high": "1個",
+          "high_school": "1〜2個",
+          "adult": "1個"
+        },
+        "juice": "コップ1杯（200mL程度）"
+      },
+      "cookingSteps": [
+        "ごはんをにぎっておにぎりにする（具は梅・おかか・塩など、脂の少ないもの）。",
+        "果汁100%ジュースと一緒に、練習前の空腹なときに食べる。"
+      ],
+      "estimatedCookingMinutes": 5,
+      "nutritionPurpose": "運動前は主食（炭水化物）を中心に。持ち運びやすく、主な8品目のアレルゲンを含まない補食です。",
+      "substitutions": [
+        {
+          "ingredientId": "onigiri",
+          "alternatives": [
+            "バナナ",
+            "カステラ（卵・小麦・乳が食べられる場合）",
+            "もち"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "オレンジ"
+        ],
+        "note": "具材によってアレルゲンが変わります（例：ツナマヨは卵）。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動前の補食は炭水化物（主食）を中心に"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-SN-002",
+      "title": "バナナ＋果汁100%オレンジジュース",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_before",
+        "pre_match_snack"
+      ],
+      "ingredients": [
+        {
+          "id": "banana",
+          "name": "バナナ",
+          "role": "fruit",
+          "allergens": []
+        },
+        {
+          "id": "juice",
+          "name": "果汁100%ジュース（オレンジなど）",
+          "role": "drink",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "banana": {
+          "elem_low": "1/2〜1本",
+          "elem_high": "1本",
+          "junior_high": "1本",
+          "high_school": "1〜2本",
+          "adult": "1本"
+        },
+        "juice": "コップ1杯（200mL程度）"
+      },
+      "cookingSteps": [
+        "バナナとジュースを用意する。",
+        "練習・試合の前、おなかがすいているときに食べる。"
+      ],
+      "estimatedCookingMinutes": 0,
+      "nutritionPurpose": "運動前は炭水化物を中心に。調理なしですぐ食べられる補食です。",
+      "substitutions": [
+        {
+          "ingredientId": "banana",
+          "alternatives": [
+            "おにぎり",
+            "カステラ（卵・小麦・乳が食べられる場合）"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "バナナ",
+          "オレンジ"
+        ]
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動前の補食は炭水化物（主食）を中心に"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SN-003",
+      "title": "カステラ＋牛乳",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match"
+      ],
+      "mealTiming": [
+        "snack_before"
+      ],
+      "ingredients": [
+        {
+          "id": "castella",
+          "name": "カステラ",
+          "role": "staple",
+          "allergens": [
+            "egg",
+            "wheat"
+          ]
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "castella": {
+          "elem_low": "1切れ",
+          "elem_high": "1〜2切れ",
+          "junior_high": "2切れ",
+          "high_school": "2切れ",
+          "adult": "2切れ"
+        },
+        "milk": "コップ1杯"
+      },
+      "cookingSteps": [
+        "カステラを切り分ける。",
+        "牛乳と一緒に、練習前に食べる。"
+      ],
+      "estimatedCookingMinutes": 0,
+      "nutritionPurpose": "小学生・中学生の練習前に食べやすい補食。炭水化物を中心に、牛乳でカルシウムもとれます。",
+      "substitutions": [
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "egg",
+          "wheat",
+          "milk"
+        ],
+        "others": [],
+        "note": "市販のカステラには乳を含むものもあります。原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動前の補食は炭水化物（主食）を中心に"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SN-004",
+      "title": "持ち運びおにぎり＆バナナセット",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T08",
+        "T13",
+        "T14"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_before",
+        "snack_after",
+        "pre_match_snack"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri",
+          "name": "おにぎり（塩・梅・おかかなど）",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "banana",
+          "name": "バナナ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "banana": "1本"
+      },
+      "cookingSteps": [
+        "おにぎりをラップで包み、バナナと一緒にバッグに入れる。",
+        "練習前の空腹時や練習後すぐなど、すぐに食べられるタイミングで食べる。"
+      ],
+      "estimatedCookingMinutes": 5,
+      "nutritionPurpose": "長い時間動く練習が多い想定のタイプ向けに、練習前後どちらでも主食を切らさないための補食セット。",
+      "substitutions": [
+        {
+          "ingredientId": "banana",
+          "alternatives": [
+            "果汁100%ジュース",
+            "みかん"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "バナナ"
+        ],
+        "note": "暑い時期は保冷剤を使い、早めに食べましょう。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動前の補食は炭水化物（主食）を中心に"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "トレーニング後はなるべく早く（2時間以内）、炭水化物とたんぱく質をとる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SA-001",
+      "title": "パン＋牛乳",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_after",
+        "post_match"
+      ],
+      "ingredients": [
+        {
+          "id": "roll",
+          "name": "ロールパン・食パンなど（菓子パンより、具の少ないパン）",
+          "role": "staple",
+          "allergens": [
+            "wheat",
+            "milk"
+          ]
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "roll": {
+          "elem_low": "ロールパン1個",
+          "elem_high": "ロールパン1〜2個",
+          "junior_high": "ロールパン2個",
+          "high_school": "ロールパン2〜3個",
+          "adult": "ロールパン2個"
+        },
+        "milk": "コップ1杯"
+      },
+      "cookingSteps": [
+        "パンと牛乳を用意する。",
+        "練習後、なるべく早く食べる。"
+      ],
+      "estimatedCookingMinutes": 0,
+      "nutritionPurpose": "運動後は炭水化物とたんぱく質を一緒に。手に入りやすい組み合わせの補食です。",
+      "substitutions": [
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        },
+        {
+          "ingredientId": "roll",
+          "alternatives": [
+            "おにぎり"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "wheat",
+          "milk"
+        ],
+        "others": [],
+        "note": "パンには卵を含むものもあります。原材料表示を確認してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動後の補食は炭水化物とたんぱく質を中心に"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SA-002",
+      "title": "鮭おにぎり＋ヨーグルト＋果物",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T07"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_after",
+        "post_match"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri_salmon",
+          "name": "鮭おにぎり",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri_salmon": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "yogurt": "1個（小カップ）",
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "鮭おにぎりをつくる（焼いた鮭をほぐして入れる）。",
+        "ヨーグルトと果物を添え、練習後なるべく早く食べる。"
+      ],
+      "estimatedCookingMinutes": 10,
+      "nutritionPurpose": "短く強い動きを繰り返す練習が多い想定のタイプ向けに、練習後すぐに主食とたんぱく質をとれる補食。",
+      "substitutions": [
+        {
+          "ingredientId": "yogurt",
+          "alternatives": [
+            "牛乳",
+            "チーズ"
+          ]
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk"
+        ],
+        "others": [
+          "さけ"
+        ]
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動後の補食は炭水化物とたんぱく質を中心に"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "トレーニング後はなるべく早く（2時間以内）、炭水化物とたんぱく質をとる"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SA-003",
+      "title": "ツナおにぎり＋牛乳",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T10",
+        "T12",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_after",
+        "post_match"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri_tuna",
+          "name": "ツナおにぎり（ツナと少量のしょうゆ）",
+          "role": "staple",
+          "allergens": [
+            "wheat"
+          ]
+        },
+        {
+          "id": "milk",
+          "name": "牛乳",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri_tuna": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "milk": "コップ1杯"
+      },
+      "cookingSteps": [
+        "油を切ったツナに少量のしょうゆを混ぜ、おにぎりの具にする。",
+        "牛乳と一緒に、練習後なるべく早く食べる。"
+      ],
+      "estimatedCookingMinutes": 5,
+      "nutritionPurpose": "練習後に主食とたんぱく質をとる補食。日によって練習量が変わる想定のタイプ向けに、量を調整しやすい組み合わせです。",
+      "substitutions": [
+        {
+          "ingredientId": "milk",
+          "alternatives": [
+            "ヨーグルト",
+            "チーズ",
+            "小魚（しらす・ししゃもなど）"
+          ],
+          "note": "乳製品が飲めない・食べられない場合は、小魚や大豆製品（豆腐・納豆）など、カルシウムを含むほかの食品を組み合わせましょう。"
+        },
+        {
+          "ingredientId": "onigiri_tuna",
+          "alternatives": [
+            "鮭おにぎり",
+            "塩おにぎり＋ゆで卵"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "wheat",
+          "milk"
+        ],
+        "others": [],
+        "note": "ツナマヨにする場合は、マヨネーズに卵が含まれます。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動後の補食は炭水化物とたんぱく質を中心に"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-SA-004",
+      "title": "鮭おにぎり＋果汁100%ジュース",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "regular",
+        "high_intensity",
+        "pre_match",
+        "match_day"
+      ],
+      "mealTiming": [
+        "snack_after",
+        "post_match"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri_salmon",
+          "name": "鮭おにぎり",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "juice",
+          "name": "果汁100%ジュース（オレンジなど）",
+          "role": "drink",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri_salmon": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "juice": "コップ1杯（200mL程度）"
+      },
+      "cookingSteps": [
+        "鮭おにぎりをつくる（焼いた鮭をほぐして入れる）。",
+        "ジュースと一緒に、練習・試合のあとなるべく早く食べる。"
+      ],
+      "estimatedCookingMinutes": 10,
+      "nutritionPurpose": "主な8品目のアレルゲンを含まない、練習・試合後の補食。おにぎりで炭水化物、鮭でたんぱく質をとります。",
+      "substitutions": [
+        {
+          "ingredientId": "juice",
+          "alternatives": [
+            "果物",
+            "豆乳（大豆が食べられる場合）"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "さけ",
+          "オレンジ"
+        ]
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-faq",
+          "claim": "運動後の補食は炭水化物とたんぱく質を中心に"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "試合後は補食で炭水化物と水分を速やかにとり、その後の食事で十分に補う"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-PM-001",
+      "title": "試合前のおにぎり・もち＋果物",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "match_day"
+      ],
+      "mealTiming": [
+        "pre_match_meal"
+      ],
+      "ingredients": [
+        {
+          "id": "onigiri",
+          "name": "おにぎり（塩・梅・おかかなど）",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "mochi",
+          "name": "切りもち",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "onigiri": {
+          "elem_low": "小さめ1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個（活動量に合わせて）"
+        },
+        "mochi": {
+          "elem_low": "なし〜1個",
+          "elem_high": "1個",
+          "junior_high": "1〜2個",
+          "high_school": "2個",
+          "adult": "1〜2個"
+        },
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "おにぎりをつくる（具は梅・おかか・塩など、食べ慣れたもの）。",
+        "もちを焼いて、しょうゆを使わずにきな粉や塩で食べる（または入れなくてもよい）。",
+        "果物と一緒に、キックオフの2〜3時間前までに食べる。"
+      ],
+      "estimatedCookingMinutes": 10,
+      "nutritionPurpose": "主食を中心にエネルギーをとる試合前の食事。食べ慣れたものを選びましょう。",
+      "substitutions": [
+        {
+          "ingredientId": "mochi",
+          "alternatives": [
+            "おにぎりをもう1個",
+            "うどん（小麦が食べられる場合）"
+          ]
+        },
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": [
+          "大豆（きな粉を使う場合）"
+        ],
+        "note": "もちはよくかんで食べましょう。小さな子どもはのどにつまらせないよう注意してください。"
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "運動開始の2〜3時間前に食事を済ませる"
+        },
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "試合前日はエネルギーをためる・安全・体調を整える。食べ慣れたものを選び、生ものを避ける"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    },
+    {
+      "id": "D-RS-001",
+      "title": "ヨーグルト＋果物",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "rest"
+      ],
+      "mealTiming": [
+        "snack"
+      ],
+      "ingredients": [
+        {
+          "id": "yogurt",
+          "name": "ヨーグルト",
+          "role": "dairy",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "id": "banana",
+          "name": "バナナ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "yogurt": "1個（小カップ）",
+        "banana": "1/2〜1本"
+      },
+      "cookingSteps": [
+        "ヨーグルトにバナナを切ってのせる。"
+      ],
+      "estimatedCookingMinutes": 3,
+      "nutritionPurpose": "休養日の間食に。乳製品でカルシウム、果物でビタミンをとります。",
+      "substitutions": [
+        {
+          "ingredientId": "yogurt",
+          "alternatives": [
+            "牛乳",
+            "チーズ"
+          ]
+        },
+        {
+          "ingredientId": "banana",
+          "alternatives": [
+            "みかん",
+            "りんご",
+            "季節の果物"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [
+          "milk"
+        ],
+        "others": [
+          "バナナ"
+        ]
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked"
+    },
+    {
+      "id": "D-RS-002",
+      "title": "ふかしいも＋果物",
+      "ageCategory": [
+        "elem_low",
+        "elem_high",
+        "junior_high",
+        "high_school",
+        "adult"
+      ],
+      "compatibleTypeIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "activityCategory": [
+        "rest"
+      ],
+      "mealTiming": [
+        "snack"
+      ],
+      "ingredients": [
+        {
+          "id": "sweet_potato",
+          "name": "さつまいも",
+          "role": "staple",
+          "allergens": []
+        },
+        {
+          "id": "orange",
+          "name": "みかん・オレンジ",
+          "role": "fruit",
+          "allergens": []
+        }
+      ],
+      "ingredientAmounts": {
+        "sweet_potato": "中1/3〜1/2本",
+        "orange": "1個"
+      },
+      "cookingSteps": [
+        "さつまいもを洗い、皮ごと蒸すか電子レンジでやわらかくなるまで加熱する。",
+        "果物を添える。"
+      ],
+      "estimatedCookingMinutes": 15,
+      "nutritionPurpose": "主な8品目のアレルゲンを含まない間食。菓子類だけで済ませず、食事で足りないものを補いましょう。",
+      "substitutions": [
+        {
+          "ingredientId": "orange",
+          "alternatives": [
+            "バナナ",
+            "キウイフルーツ",
+            "季節の果物"
+          ]
+        },
+        {
+          "ingredientId": "sweet_potato",
+          "alternatives": [
+            "おにぎり",
+            "ゆでとうもろこし"
+          ]
+        }
+      ],
+      "allergenInformation": {
+        "contains": [],
+        "others": []
+      },
+      "sourceReferences": [
+        {
+          "sourceId": "jfa-guideline",
+          "claim": "毎食、主食・主菜・副菜・牛乳乳製品・果物をそろえる基本の形"
+        }
+      ],
+      "lastReviewedAt": "2026-11-05",
+      "reviewStatus": "source_checked",
+      "generalFallback": true
+    }
+  ]
+}

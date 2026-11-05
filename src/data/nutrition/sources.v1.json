@@ -1,0 +1,22 @@
+{
+  "version": "nutrition-sources-2026.11-v1",
+  "_comment": "アプリの食事ガイドが根拠にしている資料だけを載せる。note教材と共通のリスト（/mnt/project-files/football-dna/nutrition/sources.json）と同じIDを使う。実際に開いて内容を確認した資料だけを追加すること。",
+  "sources": [
+    {
+      "id": "jfa-guideline",
+      "title": "JFA 栄養ガイドライン",
+      "publisher": "公益財団法人 日本サッカー協会",
+      "url": "https://www.jfa.jp/medical/a08.html",
+      "checkedOn": "2026-11-05",
+      "usedFor": "基本の食事の形（主食・主菜・副菜・牛乳乳製品・果物）、練習前後の食事のタイミング、補食、試合前日・試合後の食事、水分補給、成長期の注意、鉄・カルシウム、サプリメントの注意"
+    },
+    {
+      "id": "jfa-faq",
+      "title": "JFA 栄養ガイドライン Q&A",
+      "publisher": "公益財団法人 日本サッカー協会",
+      "url": "https://www.jfa.jp/football_family/medical/a08_faq.html",
+      "checkedOn": "2026-11-05",
+      "usedFor": "運動前・運動後の補食の選び方、菓子パンだけの食事の注意、炭水化物を抜かないこと"
+    }
+  ]
+}
