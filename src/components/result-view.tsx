@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { SaveToAccount } from "@/components/save-to-account";
+import { UpgradeToFull } from "@/components/upgrade-to-full";
 import { useResultEntry } from "@/components/use-result-entry";
 import { deleteMyResult } from "@/app/actions/account";
 import { AxisRadar } from "@/components/axis-radar";
@@ -32,7 +33,10 @@ export function ResultView({ id, accountEnabled }: { id: string; accountEnabled:
 
   const r = entry.result;
   const t = typeDef(r.primaryTypeId);
+  const isQuick = r.mode === "quick";
   const composite = r.compositeTypeId ? typeDef(r.compositeTypeId) : null;
+  // かんたん診断では、得点差に関係なく2位のタイプも候補として見せる
+  const runnerUp = isQuick && r.typeRanking[1] ? typeDef(r.typeRanking[1].typeId) : null;
   const nickname = entry.profile.nickname?.trim();
 
   const source = loaded?.source ?? "local";
@@ -53,11 +57,23 @@ export function ResultView({ id, accountEnabled }: { id: string; accountEnabled:
     <div className="space-y-5">
       <section className="relative overflow-hidden rounded-3xl border border-accent/40 bg-gradient-to-b from-navy-800 to-navy-900 p-6 text-center">
         <p className="text-xs font-bold tracking-[0.25em] text-accent">YOUR FOOTBALL DNA</p>
+        {isQuick && (
+          <p className="mx-auto mt-2 w-fit rounded-full border border-accent/50 px-3 py-0.5 text-xs font-bold text-accent">
+            かんたん診断（15問）の結果です
+          </p>
+        )}
         {nickname && <p className="mt-2 text-sm text-ink-muted">{nickname} さんのプレースタイル</p>}
         <h1 className="mt-2 text-3xl font-black">{t.name}</h1>
         <p className="mt-1 font-bold text-accent">{t.catchcopy}</p>
         <p className="mt-4 text-left text-sm leading-relaxed text-ink">{t.summary}</p>
-        {composite && (
+        {runnerUp && (
+          <p className="mt-4 rounded-xl bg-navy-950/60 p-3 text-left text-sm text-ink-muted">
+            <span className="font-bold text-ink">{runnerUp.name}タイプの可能性もあります</span>
+            <br />
+            かんたん診断は質問が少ないため、1位と2位が入れ替わることがあります。くわしく知りたい方は40問の診断をお試しください。
+          </p>
+        )}
+        {!isQuick && composite && (
           <p className="mt-4 rounded-xl bg-navy-950/60 p-3 text-left text-sm text-ink-muted">
             <span className="font-bold text-ink">複合タイプ：{t.name} × {composite.name}</span>
             <br />
@@ -70,6 +86,8 @@ export function ResultView({ id, accountEnabled }: { id: string; accountEnabled:
           </p>
         )}
       </section>
+
+      {isQuick && <UpgradeToFull entry={entry} source={source} />}
 
       <Card>
         <CardTitle>8つのプレー志向</CardTitle>
@@ -191,7 +209,7 @@ export function ResultView({ id, accountEnabled }: { id: string; accountEnabled:
         <LinkButton href={`/results/${entry.id}/share`} size="lg" block>
           SNS用の画像をつくる
         </LinkButton>
-        <LinkButton href="/diagnosis/profile" variant="secondary" block>
+        <LinkButton href={`/diagnosis/profile?mode=${isQuick ? "quick" : "full"}`} variant="secondary" block>
           もう一度診断する
         </LinkButton>
         <Button variant="danger" block onClick={onDelete}>

@@ -75,6 +75,8 @@ export type LatestResult = {
   axisScores: AxisScores;
   topPositions: string[];
   createdAt: string;
+  /** かんたん診断（15問）の結果か */
+  quick: boolean;
 };
 
 export type TeamPage =
@@ -120,7 +122,7 @@ export async function loadTeamPage(teamId: string): Promise<TeamPage> {
   if (viewable.length > 0) {
     const { data } = await supabase
       .from("results")
-      .select("user_id, type_id, composite_type_id, axis_scores, top_positions, created_at")
+      .select("user_id, type_id, composite_type_id, axis_scores, top_positions, created_at, mode:detail->>mode")
       .in("user_id", viewable)
       .order("created_at", { ascending: false })
       .limit(2000);
@@ -132,6 +134,7 @@ export async function loadTeamPage(teamId: string): Promise<TeamPage> {
         axisScores: toAxisScores(r.axis_scores),
         topPositions: (r.top_positions as string[]) ?? [],
         createdAt: r.created_at as string,
+        quick: r.mode === "quick",
       })),
     );
   }
@@ -206,7 +209,7 @@ export async function loadMemberHistory(teamId: string, memberId: string) {
   const { supabase } = await getCurrentUser();
   const { data } = await supabase!
     .from("results")
-    .select("user_id, type_id, composite_type_id, axis_scores, top_positions, created_at")
+    .select("user_id, type_id, composite_type_id, axis_scores, top_positions, created_at, mode:detail->>mode")
     .eq("user_id", member.userId)
     .order("created_at", { ascending: false })
     .limit(50);
@@ -218,6 +221,7 @@ export async function loadMemberHistory(teamId: string, memberId: string) {
     axisScores: toAxisScores(r.axis_scores),
     topPositions: r.top_positions ?? [],
     createdAt: r.created_at,
+    quick: r.mode === "quick",
   }));
   return { team: page.team, member, results };
 }

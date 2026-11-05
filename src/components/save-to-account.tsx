@@ -31,7 +31,11 @@ export function SaveToAccount({ entry }: { entry: StoredResult }) {
           disabled={pending}
           onClick={() =>
             start(async () => {
-              const r = await saveResultToAccount({ profile: entry.profile, answers: entry.answers });
+              const r = await saveResultToAccount({
+                profile: entry.profile,
+                answers: entry.answers,
+                mode: entry.result.mode ?? "full",
+              });
               if (r.ok) setState({ kind: "saved", id: r.data.id });
               else if (r.error.includes("ログイン")) setState({ kind: "login" });
               else setState({ kind: "error", msg: r.error });

@@ -40,6 +40,9 @@ export default async function MemberPage({ params }: { params: Promise<{ id: str
           <Card>
             <CardTitle>最新の結果（{new Date(latest.createdAt).toLocaleDateString("ja-JP")}）</CardTitle>
             <p className="text-xl font-black text-accent">{typeDef(latest.typeId).name}</p>
+            {latest.quick && (
+              <p className="text-xs text-ink-muted">かんたん診断（15問）の結果です。40問の結果より目安の幅が大きくなります。</p>
+            )}
             {latest.compositeTypeId && <p className="text-sm text-ink-muted">複合タイプ：× {typeDef(latest.compositeTypeId).name}</p>}
             <p className="mt-1 text-sm">ポジション候補：{latest.topPositions.map(positionLabel).join("・")}</p>
             <AxisRadar
@@ -82,7 +85,10 @@ export default async function MemberPage({ params }: { params: Promise<{ id: str
             <ul className="space-y-1 text-sm">
               {results.map((r) => (
                 <li key={r.createdAt} className="flex justify-between border-b border-navy-800 py-1">
-                  <span>{typeDef(r.typeId).name}</span>
+                  <span>
+                    {typeDef(r.typeId).name}
+                    {r.quick && <span className="ml-1 text-xs text-ink-muted">（かんたん）</span>}
+                  </span>
                   <span className="text-xs text-ink-muted">{new Date(r.createdAt).toLocaleDateString("ja-JP")}</span>
                 </li>
               ))}

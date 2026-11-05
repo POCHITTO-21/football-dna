@@ -39,7 +39,7 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
       consentStatus: m.consentStatus,
       needsGuardian: m.needsGuardian,
       canView: m.canView,
-      latest: l ? { typeId: l.typeId, topPositions: l.topPositions, createdAt: l.createdAt } : null,
+      latest: l ? { typeId: l.typeId, topPositions: l.topPositions, createdAt: l.createdAt, quick: l.quick } : null,
     };
   });
   const agg = page.aggregate;

@@ -17,6 +17,7 @@ import {
   type Profile,
 } from "@/lib/profile";
 import { QUESTION_SET } from "@/lib/scoring/config";
+import { diagnosisModeSchema } from "@/lib/scoring/model";
 import { loadDraft, saveDraft } from "@/lib/storage";
 
 export function ProfileForm() {
@@ -40,12 +41,19 @@ export function ProfileForm() {
 
   const onSubmit = (profile: Profile) => {
     const prev = loadDraft(QUESTION_SET.version);
+    // ?mode=full ならくわしい診断（40問）。指定がなければ途中のモードを引き継ぎ、なければかんたん診断（15問）
+    const param = diagnosisModeSchema.safeParse(new URLSearchParams(window.location.search).get("mode"));
+    const mode = param.success ? param.data : (prev?.mode ?? "quick");
+    const sameMode = (prev?.mode ?? "full") === mode;
     saveDraft({
       questionSetVersion: QUESTION_SET.version,
       profile,
       answers: prev?.answers ?? {},
-      currentIndex: prev?.currentIndex ?? 0,
+      currentIndex: sameMode ? (prev?.currentIndex ?? 0) : 0,
       kidsMode: isKidsAgeBand(profile.ageBand),
+      mode,
+      // トップから明示的にモードを選んだときは「かんたん診断の続き」を解除する
+      upgradeFrom: sameMode && !param.success ? prev?.upgradeFrom : undefined,
     });
     router.push("/diagnosis/questions");
   };

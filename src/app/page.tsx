@@ -15,7 +15,7 @@ export default function HomePage() {
           <span className="text-accent">DNA</span> を見つけよう
         </h1>
         <p className="mt-4 text-ink-muted">
-          40問の質問に答えると、16のプレースタイルから
+          15問・約2分の質問に答えると、16のプレースタイルから
           <br className="hidden sm:inline" />
           あなたに近いタイプと、ポジションの可能性がわかります。
         </p>
@@ -25,7 +25,7 @@ export default function HomePage() {
 
       <div className="grid grid-cols-3 gap-2 text-center">
         {[
-          ["40", "問の質問"],
+          ["15", "問からOK"],
           ["16", "プレースタイル"],
           ["11", "ポジション"],
         ].map(([n, l]) => (

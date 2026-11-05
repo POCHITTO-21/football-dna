@@ -13,6 +13,8 @@ export type ShareCardData = {
   axes: { label: string; score: number }[];
   positions: string[];
   nickname: string | null;
+  /** かんたん診断（15問）の結果か */
+  quick: boolean;
 };
 
 export const SHARE_SIZES = {
@@ -23,7 +25,7 @@ export type ShareSize = keyof typeof SHARE_SIZES;
 
 /** 画像に載せるデータを作る純粋関数。ニックネームは includeNickname=true のときだけ含む。 */
 export function buildShareCardData(
-  result: Pick<DiagnosisResult, "primaryTypeId" | "axisScores" | "topPositions">,
+  result: Pick<DiagnosisResult, "primaryTypeId" | "axisScores" | "topPositions" | "mode">,
   opts: { includeNickname: boolean; nickname?: string | null },
 ): ShareCardData {
   const t = typeDef(result.primaryTypeId);
@@ -34,6 +36,7 @@ export function buildShareCardData(
     axes: AXIS_IDS.map((a) => ({ label: axisDef(a).short, score: (result.axisScores as AxisScores)[a] })),
     positions: result.topPositions.map((p) => p.positionId),
     nickname: nick ? nick : null,
+    quick: result.mode === "quick",
   };
 }
 
@@ -137,7 +140,9 @@ function brand(ctx: CanvasRenderingContext2D, x: number, y: number, size: number
 export function drawShareCard(ctx: CanvasRenderingContext2D, size: ShareSize, data: ShareCardData) {
   const { width: w, height: h } = SHARE_SIZES[size];
   background(ctx, w, h);
-  const footer = "自己回答にもとづくプレースタイルの傾向です";
+  const footer = data.quick
+    ? "かんたん診断（15問）・自己回答にもとづくプレースタイルの傾向です"
+    : "自己回答にもとづくプレースタイルの傾向です";
 
   if (size === "story") {
     brand(ctx, w / 2, 130, 56, "center");
@@ -162,7 +167,7 @@ export function drawShareCard(ctx: CanvasRenderingContext2D, size: ShareSize, da
     ctx.fillText(data.positions.join("  /  "), w / 2, 1218);
     ctx.fillStyle = C.muted;
     ctx.font = `500 26px ${FONT}`;
-    ctx.fillText(footer, w / 2, 1290);
+    ctx.fillText(footer, w / 2, 1290, w - 80);
   } else {
     brand(ctx, 80, 110, 44, "left");
     ctx.textAlign = "left";
@@ -184,7 +189,7 @@ export function drawShareCard(ctx: CanvasRenderingContext2D, size: ShareSize, da
     ctx.fillText(data.positions.join(" / "), 80, 495);
     ctx.fillStyle = C.muted;
     ctx.font = `500 20px ${FONT}`;
-    ctx.fillText(footer, 80, 570);
+    ctx.fillText(footer, 80, 570, w - 160);
     drawRadar(ctx, 935, 325, 160, data, 24);
   }
 }

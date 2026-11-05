@@ -54,6 +54,35 @@ export function computeAxisScores(answers: Answers, questions: readonly Question
   return { ok: true, raw, scores };
 }
 
+/** 1軸の回答の平均(1〜4) → 0〜100。round((平均-1)/3*100)。5問なら normalizeAxis と同じ値になる */
+export function normalizeAxisMean(sum: number, count: number): number {
+  return Math.round(((sum - count) / (3 * count)) * 100);
+}
+
+/**
+ * かんたん診断用：指定した設問だけで軸スコアを出す（各軸1問以上）。
+ * 40問の採点（computeAxisScores）は変えずに、こちらを別に用意している。
+ */
+export function computeAxisScoresSubset(answers: Answers, questions: readonly Question[]): AxisResult {
+  const ids = [...questions].map((q) => q.id).sort();
+  const missing = ids.filter((id) => answers[id] === undefined || answers[id] === null);
+  if (missing.length > 0) return { ok: false, reason: "missing", missing };
+  const invalid = ids.filter((id) => !isValidAnswerValue(answers[id]));
+  if (invalid.length > 0) return { ok: false, reason: "invalid", invalid };
+
+  const raw = Object.fromEntries(AXIS_IDS.map((a) => [a, 0])) as AxisScores;
+  const counts = Object.fromEntries(AXIS_IDS.map((a) => [a, 0])) as Record<AxisId, number>;
+  for (const q of questions) {
+    raw[q.axis] += answers[q.id] as number;
+    counts[q.axis] += 1;
+  }
+  for (const a of AXIS_IDS) {
+    if (counts[a] < 1) throw new Error(`axis ${a} needs at least 1 question`);
+  }
+  const scores = Object.fromEntries(AXIS_IDS.map((a) => [a, normalizeAxisMean(raw[a], counts[a])])) as AxisScores;
+  return { ok: true, raw, scores };
+}
+
 /** 重み付き平均（AXIS_IDS の固定順で加算して浮動小数の順序依存を避ける） */
 export function weightedAverage(scores: AxisScores, weights: Partial<Record<AxisId, number>>): number {
   let sum = 0;

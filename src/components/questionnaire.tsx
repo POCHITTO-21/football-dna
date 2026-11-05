@@ -4,11 +4,19 @@ import { useRouter } from "next/navigation";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
-import { QUESTION_SET, QUESTIONS_IN_ORDER } from "@/lib/scoring/config";
+import { QUESTION_SET, questionsForMode } from "@/lib/scoring/config";
 import { diagnoseCurrent } from "@/lib/scoring";
-import { clearDraft, loadDraft, saveDraft, saveResult, type Draft } from "@/lib/storage";
+import type { Question } from "@/lib/scoring/model";
+import { clearDraft, deleteResult, draftMode, loadDraft, saveDraft, saveResult, type Draft } from "@/lib/storage";
 
-const TOTAL = QUESTIONS_IN_ORDER.length;
+function questionsForDraft(d: Draft | null): Question[] {
+  return questionsForMode(draftMode(d), { upgrade: Boolean(d?.upgradeFrom) });
+}
+
+function modeLabel(d: Draft | null): string {
+  if (draftMode(d) === "quick") return "かんたん診断（15問）";
+  return d?.upgradeFrom ? "くわしい診断（残りの質問）" : "くわしい診断（40問）";
+}
 
 export function Questionnaire() {
   const router = useRouter();
@@ -26,7 +34,7 @@ export function Questionnaire() {
       router.replace("/diagnosis/profile");
       return;
     }
-    setDraft({ ...d, currentIndex: Math.min(d.currentIndex, TOTAL - 1) });
+    setDraft({ ...d, currentIndex: Math.min(d.currentIndex, questionsForDraft(d).length - 1) });
     setLoaded(true);
   }, [router]);
 
@@ -41,11 +49,13 @@ export function Questionnaire() {
     if (advanceTimer.current) window.clearTimeout(advanceTimer.current);
   }, []);
 
+  const QUESTIONS = questionsForDraft(draft);
+  const TOTAL = QUESTIONS.length;
   const index = draft?.currentIndex ?? 0;
-  const q = QUESTIONS_IN_ORDER[index];
+  const q = QUESTIONS[index];
   const kids = draft?.kidsMode ?? false;
-  const answeredCount = draft ? QUESTIONS_IN_ORDER.filter((x) => draft.answers[x.id] !== undefined).length : 0;
-  const unanswered = draft ? QUESTIONS_IN_ORDER.filter((x) => draft.answers[x.id] === undefined) : [];
+  const answeredCount = draft ? QUESTIONS.filter((x) => draft.answers[x.id] !== undefined).length : 0;
+  const unanswered = draft ? QUESTIONS.filter((x) => draft.answers[x.id] === undefined) : [];
 
   const goTo = useCallback(
     (i: number) => {
@@ -54,7 +64,7 @@ export function Questionnaire() {
       setReview(false);
       persist({ ...draft, currentIndex: Math.max(0, Math.min(TOTAL - 1, i)) });
     },
-    [draft, persist],
+    [draft, persist, TOTAL],
   );
 
   // 設問が変わったら見出しにフォーカス（スクリーンリーダー・キーボード利用者向け）
@@ -77,7 +87,7 @@ export function Questionnaire() {
         }
       }, 220);
     },
-    [draft, index, persist, q, review],
+    [draft, index, persist, q, review, TOTAL],
   );
 
   // キーボード: 1〜4で回答、←で戻る
@@ -98,10 +108,17 @@ export function Questionnaire() {
 
   const submit = () => {
     if (!draft?.profile) return;
+    const mode = draftMode(draft);
+    // かんたん診断では15問の回答だけを結果に残す
+    const answers =
+      mode === "quick"
+        ? Object.fromEntries(QUESTIONS.filter((x) => draft.answers[x.id] !== undefined).map((x) => [x.id, draft.answers[x.id]]))
+        : draft.answers;
     const out = diagnoseCurrent({
-      answers: draft.answers,
+      answers,
       gkInterest: draft.profile.gkInterest,
       foot: draft.profile.foot,
+      mode,
     });
     if (!out.ok) {
       setError(
@@ -112,11 +129,14 @@ export function Questionnaire() {
       setReview(true);
       return;
     }
-    const saved = saveResult({ profile: draft.profile, answers: draft.answers, result: out.result });
+    const saved = saveResult({ profile: draft.profile, answers, result: out.result });
     if (!saved) {
       setError("結果を保存できませんでした。ブラウザの設定（プライベートモードや保存容量）を確認してください。");
       return;
     }
+    // かんたん診断の続きとして答えた場合、元のかんたん診断の結果はくわしい結果に置き換える
+    const prevId = draft.upgradeFrom?.localResultId;
+    if (prevId && prevId !== saved.id) deleteResult(prevId);
     clearDraft();
     router.push(`/results/${saved.id}`);
   };
@@ -129,7 +149,7 @@ export function Questionnaire() {
     <div className="space-y-5">
       <div className="space-y-2">
         <div className="flex items-center justify-between text-sm">
-          <span className="font-bold text-accent">STEP 2 / 2</span>
+          <span className="font-bold text-accent">STEP 2 / 2・{modeLabel(draft)}</span>
           <span className="text-ink-muted" aria-live="polite">
             回答済み {answeredCount} / {TOTAL}
           </span>
@@ -163,6 +183,7 @@ export function Questionnaire() {
       {review ? (
         <ReviewPanel
           draft={draft}
+          questions={QUESTIONS}
           unansweredIds={unanswered.map((u) => u.id)}
           onJump={(i) => goTo(i)}
           onSubmit={submit}
@@ -240,12 +261,14 @@ export function Questionnaire() {
 
 function ReviewPanel({
   draft,
+  questions,
   unansweredIds,
   onJump,
   onSubmit,
   error,
 }: {
   draft: Draft;
+  questions: Question[];
   unansweredIds: string[];
   onJump: (i: number) => void;
   onSubmit: () => void;
@@ -261,7 +284,7 @@ function ReviewPanel({
           : `未回答が ${unansweredIds.length} 問あります（オレンジ枠）。番号を押すとその質問に移動します。`}
       </p>
       <ol className="grid grid-cols-5 gap-2">
-        {QUESTIONS_IN_ORDER.map((q, i) => {
+        {questions.map((q, i) => {
           const v = draft.answers[q.id];
           const missing = v === undefined;
           return (

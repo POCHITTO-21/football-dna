@@ -27,6 +27,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
         compositeTypeId: r.compositeTypeId,
         axisScores: r.axisScores,
         topPositions: r.topPositions,
+        quick: r.quick,
       };
     });
   const date = new Date().toISOString().slice(0, 10);

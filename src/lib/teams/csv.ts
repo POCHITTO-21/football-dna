@@ -8,6 +8,8 @@ export type CsvRow = {
   compositeTypeId: string | null;
   axisScores: AxisScores;
   topPositions: string[];
+  /** かんたん診断（15問）の結果か。省略時は40問 */
+  quick?: boolean;
 };
 
 /** CSV の1セル。表計算ソフトで数式として実行されないよう、先頭が = + - @ などなら ' を付ける */
@@ -36,6 +38,7 @@ export function buildTeamCsv(rows: CsvRow[]): string {
     "ポジション候補1",
     "ポジション候補2",
     "ポジション候補3",
+    "診断の種類",
   ];
   const lines = [header.map(csvCell).join(",")];
   for (const r of rows) {
@@ -47,6 +50,7 @@ export function buildTeamCsv(rows: CsvRow[]): string {
         r.compositeTypeId ? typeDef(r.compositeTypeId).name : "",
         ...AXIS_IDS.map((a) => r.axisScores[a] ?? ""),
         ...[0, 1, 2].map((i) => (r.topPositions[i] ? positionLabel(r.topPositions[i]) : "")),
+        r.quick ? "かんたん（15問）" : "くわしい（40問）",
       ]
         .map((v) => csvCell(v))
         .join(","),
