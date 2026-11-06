@@ -71,10 +71,13 @@ test("食事ガイドにアクセシビリティ違反がなく、横にはみ�
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
-test("note のリンクが未設定のときは有料教材へのボタンを出さない", async ({ page }) => {
+test("note のプラン案内とリンク（メンバーシップのページを新しいタブで開く）", async ({ page }) => {
   await page.goto("/nutrition");
   await expect(page.getByText("FOOTBALL DNA LABのメンバーシップ（note）")).toBeVisible();
   await expect(page.getByText("月額980円")).toBeVisible();
   await expect(page.getByText("月額2,980円")).toBeVisible();
-  await expect(page.getByText("note のメンバーシップは準備中です。")).toBeVisible();
+  const link = page.getByRole("link", { name: "note でプランを見る（外部サイト）" });
+  await expect(link).toHaveAttribute("href", /^https:\/\/note\.com\/[^/]+\/membership$/);
+  await expect(link).toHaveAttribute("target", "_blank");
+  await expect(link).toHaveAttribute("rel", /noopener/);
 });
