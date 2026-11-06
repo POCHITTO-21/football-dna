@@ -1,6 +1,6 @@
 {
   "_comment": "note記事のURLを入れると、診断結果の画面にリンクが表示されます。空欄のタイプは membershipUrl（メンバーシップのトップ）を表示し、両方空欄なら何も表示しません。https://note.com/ のURLだけ使えます。",
-  "membershipUrl": "",
+  "membershipUrl": "https://note.com/pochitto21oneone/membership",
   "types": {
     "T01": "",
     "T02": "",
