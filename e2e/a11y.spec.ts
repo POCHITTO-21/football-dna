@@ -10,7 +10,7 @@ async function expectNoViolations(page: Page, label: string) {
 }
 
 test("主要ページにアクセシビリティ違反がない", async ({ page }) => {
-  for (const path of ["/", "/diagnosis/profile", "/about", "/privacy", "/terms", "/offline", "/login", "/teams"]) {
+  for (const path of ["/", "/diagnosis/profile", "/about", "/privacy", "/terms", "/offline", "/login", "/teams", "/nutrition"]) {
     await page.goto(path);
     await expectNoViolations(page, path);
   }

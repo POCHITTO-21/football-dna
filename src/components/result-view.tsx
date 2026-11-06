@@ -4,6 +4,8 @@ import { SaveToAccount } from "@/components/save-to-account";
 import { UpgradeToFull } from "@/components/upgrade-to-full";
 import { useResultEntry } from "@/components/use-result-entry";
 import { deleteMyResult } from "@/app/actions/account";
+import { NoteGuide } from "@/components/note-guide";
+import { nutritionGuideHref } from "@/lib/nutrition/link";
 import { AxisRadar } from "@/components/axis-radar";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
@@ -192,6 +194,16 @@ export function ResultView({ id, accountEnabled }: { id: string; accountEnabled:
           ))}
         </ul>
       </Card>
+
+      <Card>
+        <CardTitle>{t.name}の食事ガイド</CardTitle>
+        <p className="text-sm">年代と今日の練習に合わせた、食事の考え方と献立の例を無料で見られます。</p>
+        <LinkButton href={nutritionGuideHref(t.id, entry.profile.ageBand)} block className="mt-4">
+          あなたの食事ガイドを見る
+        </LinkButton>
+      </Card>
+
+      <NoteGuide typeId={t.id} typeName={t.name} />
 
       <Card>
         <details>
