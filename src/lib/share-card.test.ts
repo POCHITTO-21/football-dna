@@ -16,8 +16,13 @@ describe("SNS画像データ", () => {
 
   it("タイプ名・8軸・ポジションID以外の項目を持たない", () => {
     const d = buildShareCardData(result, { includeNickname: false });
-    expect(Object.keys(d).sort()).toEqual(["axes", "catchcopy", "nickname", "positions", "typeName"]);
+    expect(Object.keys(d).sort()).toEqual(["axes", "catchcopy", "nickname", "positions", "quick", "typeName"]);
     expect(d.axes).toHaveLength(8);
     expect(d.positions).toHaveLength(3);
+    expect(d.quick).toBe(false);
+  });
+
+  it("かんたん診断の結果は quick が付く", () => {
+    expect(buildShareCardData({ ...result, mode: "quick" }, { includeNickname: false }).quick).toBe(true);
   });
 });

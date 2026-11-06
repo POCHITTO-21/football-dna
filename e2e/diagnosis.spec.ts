@@ -3,8 +3,9 @@ import { answerViaKeyboard, fillProfile } from "./helpers";
 
 test("ゲストで40問に答えて結果を見られる", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: "無料で診断をはじめる" }).click();
-  await fillProfile(page);
+  await page.getByRole("link", { name: "くわしい診断（40問・約5分）" }).click();
+  await expect(page).toHaveURL(/\/diagnosis\/profile\?mode=full/);
+  await fillProfile(page, "経験も希望もない", null);
 
   // 守備・判断・協調が高い回答（GK希望なし）
   const pattern = (i: number) => ([3, 4, 6, 7].includes(i % 8) ? 4 : [0, 2].includes(i % 8) ? 1 : 2);
@@ -30,6 +31,34 @@ test("ゲストで40問に答えて結果を見られる", async ({ page }) => {
   const download = page.waitForEvent("download");
   await page.getByRole("button", { name: "画像をダウンロード" }).click();
   expect((await download).suggestedFilename()).toBe("football-dna-1080x1350.png");
+});
+
+test("かんたん診断（15問）→ あと25問でくわしい診断に更新できる", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "無料でかんたん診断（15問・約2分）" }).click();
+  await fillProfile(page, "経験も希望もない", null);
+  await expect(page.getByText("回答済み 0 / 15")).toBeVisible();
+  await answerViaKeyboard(page, Array.from({ length: 15 }, (_, i) => (i % 4) + 1), 15);
+  await expect(page.getByRole("heading", { name: "回答の確認" })).toBeVisible();
+  await page.getByRole("button", { name: "結果を見る" }).click();
+  await expect(page).toHaveURL(/\/results\/[0-9a-f]{32}$/);
+  await expect(page.getByText("かんたん診断（15問）の結果です")).toBeVisible();
+  await expect(page.getByText(/タイプの可能性もあります/)).toBeVisible();
+
+  // 残り25問だけ答えて40問の結果へ
+  await page.getByRole("button", { name: "あと25問に答える" }).click();
+  await expect(page).toHaveURL(/\/diagnosis\/questions/);
+  await expect(page.getByText("回答済み 0 / 25")).toBeVisible();
+  await answerViaKeyboard(page, Array.from({ length: 25 }, (_, i) => (i % 4) + 1), 25);
+  await page.getByRole("button", { name: "結果を見る" }).click();
+  await expect(page).toHaveURL(/\/results\/[0-9a-f]{32}$/);
+  await expect(page.getByText("YOUR FOOTBALL DNA")).toBeVisible();
+  await expect(page.getByText("かんたん診断（15問）の結果です")).toHaveCount(0);
+  await expect(page.getByText("q-2026.11-v1", { exact: false })).toBeVisible();
+
+  // かんたん診断の結果はくわしい結果に置き換わり、この端末の結果は1件
+  await page.goto("/");
+  await expect(page.locator("h2", { hasText: "この端末の診断結果" }).locator("..").getByRole("link")).toHaveCount(1);
 });
 
 test("途中保存・再開・戻る・未回答チェック", async ({ page }) => {

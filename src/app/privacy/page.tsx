@@ -30,7 +30,7 @@ export default function PrivacyPage() {
         <ul className="list-disc space-y-1 pl-5">
           <li>
             <strong>ログインせずに使う場合：</strong>
-            年代・経験年数・ふだんのポジション・GKへの関心・利き足・ニックネーム（任意）・40問の回答と診断結果。これらはお使いの端末のブラウザ（localStorage）にだけ保存され、運営者のサーバーには送信されません。
+            年代・経験年数・ふだんのポジション・GKへの関心・利き足・ニックネーム（任意）・質問への回答（15問または40問）と診断結果。これらはお使いの端末のブラウザ（localStorage）にだけ保存され、運営者のサーバーには送信されません。
           </li>
           <li>
             <strong>ログインする場合：</strong>

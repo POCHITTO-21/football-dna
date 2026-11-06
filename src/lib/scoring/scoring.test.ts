@@ -3,12 +3,16 @@ import {
   AXIS_IDS,
   POSITION_CONFIG,
   QUESTION_SET,
+  QUICK_QUESTIONS_IN_ORDER,
+  QUICK_SET,
   TYPE_CONFIG,
+  UPGRADE_QUESTIONS_IN_ORDER,
   computeAxisScores,
   computePositionScores,
   computeTypeScores,
   diagnoseCurrent,
   normalizeAxis,
+  normalizeAxisMean,
   type AxisScores,
 } from "./index";
 import { allAnswers, answersByAxis } from "./test-helpers";
@@ -199,5 +203,73 @@ describe("「採点のしくみ」ページの説明と設定値が一致する"
     expect(TYPE_CONFIG.allRounder.maxBonus).toBe(15);
     expect(COMPOSITE_GAP).toBe(3);
     expect(POSITION_CONFIG.footSideBonus).toBe(2);
+  });
+});
+
+describe("かんたん診断（15問）", () => {
+  it("15問・40問セットの一部・重複なし・各軸2問（協調のみ1問）・表示順がインターリーブ", () => {
+    expect(QUICK_QUESTIONS_IN_ORDER).toHaveLength(15);
+    const ids = QUICK_QUESTIONS_IN_ORDER.map((q) => q.id);
+    expect(new Set(ids).size).toBe(15);
+    for (const id of ids) expect(QUESTION_SET.questions.some((q) => q.id === id)).toBe(true);
+    for (const a of AXIS_IDS) {
+      expect(QUICK_QUESTIONS_IN_ORDER.filter((q) => q.axis === a)).toHaveLength(a === "TEAM" ? 1 : 2);
+    }
+    for (let i = 1; i < QUICK_QUESTIONS_IN_ORDER.length; i++) {
+      expect(QUICK_QUESTIONS_IN_ORDER[i].axis).not.toBe(QUICK_QUESTIONS_IN_ORDER[i - 1].axis);
+    }
+    expect(QUICK_SET.baseQuestionSetVersion).toBe(QUESTION_SET.version);
+  });
+
+  it("追加の25問とあわせると40問ちょうど", () => {
+    expect(UPGRADE_QUESTIONS_IN_ORDER).toHaveLength(25);
+    const all = new Set([...QUICK_QUESTIONS_IN_ORDER, ...UPGRADE_QUESTIONS_IN_ORDER].map((q) => q.id));
+    expect(all.size).toBe(40);
+  });
+
+  it("平均からの正規化は5問のとき40問の式と一致する", () => {
+    for (let raw = 5; raw <= 20; raw++) expect(normalizeAxisMean(raw, 5)).toBe(normalizeAxis(raw));
+    expect(normalizeAxisMean(2, 2)).toBe(0);
+    expect(normalizeAxisMean(8, 2)).toBe(100);
+    expect(normalizeAxisMean(5, 2)).toBe(50);
+    expect(normalizeAxisMean(3, 1)).toBe(67);
+  });
+
+  it("15問だけの回答で quick の結果が出る（40問では未回答扱い）", () => {
+    const answers = Object.fromEntries(QUICK_QUESTIONS_IN_ORDER.map((q) => [q.id, 3]));
+    const quick = diagnoseCurrent({ answers, gkInterest: "none", foot: "right", mode: "quick" });
+    expect(quick.ok).toBe(true);
+    if (!quick.ok) return;
+    expect(quick.result.mode).toBe("quick");
+    expect(quick.result.questionSetVersion).toBe(QUICK_SET.version);
+    for (const a of AXIS_IDS) expect(quick.result.axisScores[a]).toBe(67);
+
+    const full = diagnoseCurrent({ answers, gkInterest: "none", foot: "right" });
+    expect(full.ok).toBe(false);
+    if (!full.ok && full.reason === "missing") expect(full.missing).toHaveLength(25);
+  });
+
+  it("15問のどれかが未回答なら quick でも計算しない", () => {
+    const answers = Object.fromEntries(QUICK_QUESTIONS_IN_ORDER.slice(1).map((q) => [q.id, 2]));
+    const out = diagnoseCurrent({ answers, gkInterest: "none", foot: "right", mode: "quick" });
+    expect(out).toEqual({ ok: false, reason: "missing", missing: [QUICK_QUESTIONS_IN_ORDER[0].id] });
+  });
+
+  it("軸ごとに同じ値で答えたら、15問と40問で軸スコアとタイプが一致する", () => {
+    const answers = answersByAxis({ DEF: 4, DUEL: 4, TAC: 3 }, 1);
+    const q = diagnoseCurrent({ answers, gkInterest: "none", foot: "right", mode: "quick" });
+    const f = diagnoseCurrent({ answers, gkInterest: "none", foot: "right" });
+    expect(q.ok && f.ok).toBe(true);
+    if (!q.ok || !f.ok) return;
+    expect(q.result.axisScores).toEqual(f.result.axisScores);
+    expect(q.result.primaryTypeId).toBe(f.result.primaryTypeId);
+    expect(f.result.mode).toBe("full");
+    expect(f.result.questionSetVersion).toBe(QUESTION_SET.version);
+  });
+
+  it("40問の結果は mode 指定なしでも従来どおり", () => {
+    const a = diagnoseCurrent({ answers: allAnswers(3), gkInterest: "none", foot: "right" });
+    const b = diagnoseCurrent({ answers: allAnswers(3), gkInterest: "none", foot: "right", mode: "full" });
+    expect(a).toEqual(b);
   });
 });

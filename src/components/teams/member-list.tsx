@@ -15,7 +15,7 @@ export type MemberView = {
   consentStatus: string;
   needsGuardian: boolean;
   canView: boolean;
-  latest: { typeId: string; topPositions: string[]; createdAt: string } | null;
+  latest: { typeId: string; topPositions: string[]; createdAt: string; quick?: boolean } | null;
 };
 
 const selectClass = "h-11 w-full rounded-xl border border-navy-600 bg-navy-800 px-3 text-sm text-ink";
@@ -123,7 +123,10 @@ export function MemberList({ teamId, members, isOwner }: { teamId: string; membe
                   </div>
                   {m.canView && m.latest ? (
                     <div className="text-right text-sm">
-                      <p className="font-bold text-accent">{typeDef(m.latest.typeId).name}</p>
+                      <p className="font-bold text-accent">
+                        {typeDef(m.latest.typeId).name}
+                        {m.latest.quick && <span className="ml-1 text-xs font-normal text-ink-muted">（かんたん）</span>}
+                      </p>
                       <p className="text-xs text-ink-muted">{m.latest.topPositions.join(" / ")}</p>
                     </div>
                   ) : (

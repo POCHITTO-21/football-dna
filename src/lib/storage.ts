@@ -6,6 +6,7 @@
 import { z } from "zod";
 import { profileSchema, type Profile } from "./profile";
 import type { DiagnosisResult } from "./scoring/diagnose";
+import { diagnosisModeSchema } from "./scoring/model";
 
 const DRAFT_KEY = "fdna:draft:v1";
 const RESULTS_KEY = "fdna:results:v1";
@@ -19,6 +20,10 @@ const draftSchema = z.object({
   answers: answersSchema,
   currentIndex: z.number().int().min(0),
   kidsMode: z.boolean().optional(),
+  /** quick = かんたん診断（15問）。ない場合は40問（以前の途中保存との互換） */
+  mode: diagnosisModeSchema.optional(),
+  /** かんたん診断の続き（残り25問）として回答中なら、元の結果のID（この端末の結果のときだけ） */
+  upgradeFrom: z.object({ localResultId: z.string().optional() }).optional(),
   updatedAt: z.string(),
 });
 export type Draft = z.infer<typeof draftSchema>;
@@ -63,6 +68,10 @@ export function loadDraft(questionSetVersion: string): Draft | null {
 
 export function saveDraft(draft: Omit<Draft, "updatedAt">): boolean {
   return safeWrite(DRAFT_KEY, { ...draft, updatedAt: new Date().toISOString() });
+}
+
+export function draftMode(d: Pick<Draft, "mode"> | null | undefined) {
+  return d?.mode ?? "full";
 }
 
 export function clearDraft() {

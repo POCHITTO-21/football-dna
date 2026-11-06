@@ -1,4 +1,4 @@
-import { POSITION_CONFIG, QUESTION_SET, SCORING_VERSION, TYPE_CONFIG } from "./config";
+import { POSITION_CONFIG, QUESTION_SET, QUICK_QUESTIONS_IN_ORDER, QUICK_SET, SCORING_VERSION, TYPE_CONFIG } from "./config";
 import { diagnose, type DiagnosisInput } from "./diagnose";
 
 export * from "./model";
@@ -13,5 +13,6 @@ export function diagnoseCurrent(input: DiagnosisInput) {
     types: TYPE_CONFIG,
     positions: POSITION_CONFIG,
     scoringVersion: SCORING_VERSION,
+    quickQuestionSet: { version: QUICK_SET.version, questions: QUICK_QUESTIONS_IN_ORDER },
   });
 }

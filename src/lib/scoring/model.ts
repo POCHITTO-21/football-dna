@@ -80,6 +80,20 @@ export const positionConfigSchema = z.object({
 });
 export type PositionConfig = z.infer<typeof positionConfigSchema>;
 
+/** かんたん診断（40問の一部を使う短縮版）の設問リスト */
+export const quickQuestionSetSchema = z.object({
+  version: z.string().min(1),
+  description: z.string().optional(),
+  baseQuestionSetVersion: z.string().min(1),
+  questionIds: z.array(z.string().regex(/^Q\d{2}$/)).min(8),
+});
+export type QuickQuestionSet = z.infer<typeof quickQuestionSetSchema>;
+
+/** quick = かんたん診断（15問）、full = くわしい診断（40問） */
+export const DIAGNOSIS_MODES = ["quick", "full"] as const;
+export type DiagnosisMode = (typeof DIAGNOSIS_MODES)[number];
+export const diagnosisModeSchema = z.enum(DIAGNOSIS_MODES);
+
 export const axisDefSchema = z.object({
   id: axisIdSchema,
   label: z.string(),

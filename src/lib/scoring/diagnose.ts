@@ -1,8 +1,18 @@
-import { AXIS_IDS, type AxisId, type AxisScores, type PositionConfig, type QuestionSet, type TypeConfig } from "./model";
+import {
+  AXIS_IDS,
+  type AxisId,
+  type AxisScores,
+  type DiagnosisMode,
+  type PositionConfig,
+  type Question,
+  type QuestionSet,
+  type TypeConfig,
+} from "./model";
 import {
   COMPOSITE_GAP,
   FLAT_PROFILE_SD,
   computeAxisScores,
+  computeAxisScoresSubset,
   computePositionScores,
   computeTypeScores,
   stdDev,
@@ -16,9 +26,13 @@ export type DiagnosisInput = {
   answers: Answers;
   gkInterest: GkInterest;
   foot: Foot;
+  /** 省略時は full（40問） */
+  mode?: DiagnosisMode;
 };
 
 export type DiagnosisResult = {
+  /** quick = かんたん診断（15問）。この項目がない古い結果は40問（full） */
+  mode?: DiagnosisMode;
   questionSetVersion: string;
   typeConfigVersion: string;
   positionConfigVersion: string;
@@ -51,6 +65,8 @@ export type DiagnosisConfig = {
   types: TypeConfig;
   positions: PositionConfig;
   scoringVersion: string;
+  /** かんたん診断の設問セット（mode: "quick" のときに使う） */
+  quickQuestionSet?: { version: string; questions: readonly Question[] };
 };
 
 function rankAxes(scores: AxisScores, dir: "asc" | "desc"): AxisId[] {
@@ -62,7 +78,12 @@ function rankAxes(scores: AxisScores, dir: "asc" | "desc"): AxisId[] {
 
 /** 診断の全体（純粋関数）。 */
 export function diagnose(input: DiagnosisInput, config: DiagnosisConfig): DiagnoseOutcome {
-  const axis = computeAxisScores(input.answers, config.questionSet.questions);
+  const mode: DiagnosisMode = input.mode ?? "full";
+  if (mode === "quick" && !config.quickQuestionSet) throw new Error("quick question set is not configured");
+  const quick = mode === "quick" ? config.quickQuestionSet! : null;
+  const axis = quick
+    ? computeAxisScoresSubset(input.answers, quick.questions)
+    : computeAxisScores(input.answers, config.questionSet.questions);
   if (!axis.ok) return axis;
 
   const gkEligible = isGkEligible(input.gkInterest);
@@ -76,7 +97,8 @@ export function diagnose(input: DiagnosisInput, config: DiagnosisConfig): Diagno
   return {
     ok: true,
     result: {
-      questionSetVersion: config.questionSet.version,
+      mode,
+      questionSetVersion: quick ? quick.version : config.questionSet.version,
       typeConfigVersion: config.types.version,
       positionConfigVersion: config.positions.version,
       scoringVersion: config.scoringVersion,

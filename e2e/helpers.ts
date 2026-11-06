@@ -1,7 +1,11 @@
 import { expect, type Page } from "@playwright/test";
 
-export async function fillProfile(page: Page, gk: "GKの経験がある" | "経験も希望もない" = "経験も希望もない") {
-  await page.goto("/diagnosis/profile");
+export async function fillProfile(
+  page: Page,
+  gk: "GKの経験がある" | "経験も希望もない" = "経験も希望もない",
+  mode: "quick" | "full" | null = "full",
+) {
+  if (mode) await page.goto(`/diagnosis/profile?mode=${mode}`);
   await page.getByLabel("中学生").check();
   await page.getByLabel("1〜3年").check();
   await page.getByLabel("MF（ミッドフィルダー）").check();
@@ -11,11 +15,11 @@ export async function fillProfile(page: Page, gk: "GKの経験がある" | "経�
 }
 
 /** n 問目（1始まり）にキー入力で回答。自動で次へ進むのを待つ */
-export async function answerViaKeyboard(page: Page, values: number[]) {
+export async function answerViaKeyboard(page: Page, values: number[], total = 40) {
   for (let i = 0; i < values.length; i++) {
     await expect(page.getByText(new RegExp(`^Q${i + 1}\\.`))).toBeVisible();
     await page.keyboard.press(String(values[i]));
-    if (i < 39) await expect(page.getByText(new RegExp(`^Q${i + 2}\\.`))).toBeVisible();
+    if (i < total - 1) await expect(page.getByText(new RegExp(`^Q${i + 2}\\.`))).toBeVisible();
   }
 }
 

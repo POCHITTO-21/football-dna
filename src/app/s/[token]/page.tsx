@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${t.name}｜わたしのサッカーDNA`;
   return {
     title,
-    description: `${t.catchcopy}。40問でわかるサッカーのプレースタイル診断「FOOTBALL DNA」`,
+    description: `${t.catchcopy}。15問でわかるサッカーのプレースタイル診断「FOOTBALL DNA」`,
     robots: { index: false, follow: false },
     openGraph: { title, type: "website" },
     twitter: { card: "summary_large_image", title },

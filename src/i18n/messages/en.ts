@@ -7,7 +7,7 @@ export const en: Messages = {
     title: "FOOTBALL DNA | Football play-style quiz",
     shortName: "FOOTBALL DNA",
     description:
-      "Answer 40 questions to see your play style (16 types), 8 play tendencies and positions that may suit you. A tool for self-understanding and conversation.",
+      "Answer 15 quick questions (or the detailed 40) to see your play style (16 types), 8 play tendencies and positions that may suit you. A tool for self-understanding and conversation.",
   },
   nav: {
     skipToContent: "Skip to content",

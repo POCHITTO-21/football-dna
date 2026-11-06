@@ -9,6 +9,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { diagnoseCurrent } from "@/lib/scoring";
 import type { DiagnosisResult } from "@/lib/scoring/diagnose";
+import { diagnosisModeSchema } from "@/lib/scoring/model";
 import { profileSchema, type Profile } from "@/lib/profile";
 import { getCurrentUser } from "@/lib/supabase/server";
 import { getSiteUrl } from "@/lib/supabase/config";
@@ -41,7 +42,12 @@ export type AccountResult = {
 };
 
 // ------------------------------------------------------------------ 結果の保存
-const saveInput = z.object({ profile: profileSchema, answers: answersSchema });
+const saveInput = z.object({
+  profile: profileSchema,
+  answers: answersSchema,
+  /** 省略時は40問（以前のクライアントとの互換） */
+  mode: diagnosisModeSchema.optional(),
+});
 
 export async function saveResultToAccount(input: unknown): Promise<ActionResult<{ id: string }>> {
   const { supabase, user } = await getCurrentUser();
@@ -51,10 +57,10 @@ export async function saveResultToAccount(input: unknown): Promise<ActionResult<
 
   const parsed = saveInput.safeParse(input);
   if (!parsed.success) return fail("入力データが正しくありません。");
-  const { profile, answers } = parsed.data;
+  const { profile, answers, mode } = parsed.data;
 
   // クライアントから送られた結果は信用せず、サーバーで再計算する
-  const out = diagnoseCurrent({ answers, gkInterest: profile.gkInterest, foot: profile.foot });
+  const out = diagnoseCurrent({ answers, gkInterest: profile.gkInterest, foot: profile.foot, mode });
   if (!out.ok) return fail("すべての質問に回答されていないため保存できません。");
   const r = out.result;
 

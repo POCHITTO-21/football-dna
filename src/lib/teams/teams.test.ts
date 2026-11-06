@@ -75,8 +75,9 @@ describe("CSV", () => {
     expect(csv.startsWith("﻿")).toBe(true);
     const lines = csv.slice(1).trimEnd().split("\r\n");
     expect(lines).toHaveLength(2);
-    expect(lines[0].split(",")).toHaveLength(15);
+    expect(lines[0].split(",")).toHaveLength(16);
     expect(lines[1]).toContain("たろう,2026-11-02,"); // 日本時間
+    expect(lines[1].endsWith("くわしい（40問）")).toBe(true);
   });
 });
 
